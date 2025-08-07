@@ -44,15 +44,13 @@ const GrassAnim = keyframes`
 `;
 
 const Grass = styled.div`
-  position: absolute;
-  bottom: 0;
-  left: 0;
+  position: relative;
   width: 100vw;
   height: 80px;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
+  left: 0;
+  bottom: 0;
   z-index: 3;
+  /* flex 제거, block으로 */
 `;
 
 const GrassBlade = styled.div`
