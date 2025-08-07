@@ -30,13 +30,15 @@ const Letter = styled.p`
 
 function AutumnSection() {
   const canvasRef = useRef(null);
+  const sectionRef = useRef(null);
 
   useEffect(() => {
     const canvas = canvasRef.current;
+    const section = sectionRef.current;
     const ctx = canvas.getContext("2d");
     const leaves = [];
     const width = window.innerWidth;
-    const height = 400;
+    const height = section.offsetHeight;
     canvas.width = width;
     canvas.height = height;
     const leafImg = new window.Image();
@@ -77,8 +79,8 @@ function AutumnSection() {
   }, []);
 
   return (
-    <Section>
-      <canvas ref={canvasRef} style={{position: "absolute", top: 0, left: 0, width: "100%", height: "400px"}} />
+    <Section ref={sectionRef}>
+      <canvas ref={canvasRef} style={{position: "absolute", top: 0, left: 0, width: "100%", height: "100%"}} />
       <Quote>가을, 낙엽이 내리는 우리의 깊이<br />"함께 쌓아온 추억이 낙엽처럼 아름답게 내려앉는다."</Quote>
       <Letter>
         노란 낙엽이 바람에 흩날릴 때마다<br />

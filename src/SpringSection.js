@@ -30,13 +30,15 @@ const Letter = styled.p`
 
 function SpringSection() {
   const canvasRef = useRef(null);
+  const sectionRef = useRef(null);
 
   useEffect(() => {
     const canvas = canvasRef.current;
+    const section = sectionRef.current;
     const ctx = canvas.getContext("2d");
     const petals = [];
     const width = window.innerWidth;
-    const height = 400;
+    const height = section.offsetHeight;
     canvas.width = width;
     canvas.height = height;
     const petalImg = new window.Image();
@@ -77,8 +79,8 @@ function SpringSection() {
   }, []);
 
   return (
-    <Section>
-      <canvas ref={canvasRef} style={{position: "absolute", top: 0, left: 0, width: "100%", height: "400px"}} />
+    <Section ref={sectionRef}>
+      <canvas ref={canvasRef} style={{position: "absolute", top: 0, left: 0, width: "100%", height: "100%"}} />
       <Quote>봄, 벚꽃이 휘날리는 우리의 시작<br />"너와 함께라서 모든 순간이 꽃이 된다."</Quote>
       <Letter>
         사랑하는 당신에게,<br />
