@@ -26,11 +26,11 @@ const Container = styled.div`
   box-shadow: 0 8px 32px rgba(0,0,0,0.12);
   padding: 40px;
   text-align: center;
-  border: 2px solid #e0e0e0; /* 연한 그레이 테두리 */
+  border: 2px solid #e0e0e0;
 `;
 
 const Title = styled.h1`
-  color: #111; /* 검정색 */
+  color:rgb(243, 148, 177);
   font-size: 2.5rem;
   margin-bottom: 16px;
   font-family: 'Playfair Display', serif;
@@ -73,7 +73,7 @@ function App() {
       <GlobalStyle />
       <Container>
         <Title>
-          <FaHeart color="#e53935" /> 우리의 사랑 이야기 <FaHeart color="#e53935" />
+          <FaHeart color="#ffb3b3" /> 우리의 사랑 이야기 <FaHeart color="#ffb3b3" />
         </Title>
         <Gallery>
           <Photo src="사진1.jpg" alt="우리사진1" onClick={() => setModalImg("사진1.jpg")} />

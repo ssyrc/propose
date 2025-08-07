@@ -13,7 +13,7 @@ const Section = styled.section`
 `;
 
 const Quote = styled.h2`
-  color: #d4af37;
+  color:rgb(212, 55, 115);
   font-size: 2rem;
   margin-top: 80px;
   font-family: 'Montserrat', 'Nanum Myeongjo', serif;
