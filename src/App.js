@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import logo from './logo.svg';
 import './App.css';
 import styled, { createGlobalStyle } from "styled-components";
@@ -26,11 +26,11 @@ const Container = styled.div`
   box-shadow: 0 8px 32px rgba(0,0,0,0.12);
   padding: 40px;
   text-align: center;
-  border: 2px solid #d4af37;
+  border: 2px solid #e0e0e0; /* 연한 그레이 테두리 */
 `;
 
 const Title = styled.h1`
-  color: #d4af37;
+  color: #111; /* 검정색 */
   font-size: 2.5rem;
   margin-bottom: 16px;
   font-family: 'Playfair Display', serif;
@@ -38,7 +38,7 @@ const Title = styled.h1`
 
 const Letter = styled.p`
   font-size: 1.2rem;
-  color: #444;
+  color: #333; /* 진한 회색 */
   margin: 32px 0;
   line-height: 1.7;
 `;
@@ -56,8 +56,9 @@ const Photo = styled.img`
   height: 120px;
   object-fit: cover;
   border-radius: 16px;
-  border: 2px solid #d4af37;
+  border: 2px solid #e0e0e0;
   box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  cursor: pointer;
 `;
 
 const Music = styled.audio`
@@ -66,18 +67,32 @@ const Music = styled.audio`
 `;
 
 function App() {
+  const [modalImg, setModalImg] = useState(null);
   return (
     <>
       <GlobalStyle />
       <Container>
         <Title>
-          <FaHeart color="#d4af37" /> 우리의 사랑 이야기
+          <FaHeart color="#e53935" /> 우리의 사랑 이야기 <FaHeart color="#e53935" />
         </Title>
         <Gallery>
-          <Photo src="사진1.jpg" alt="우리사진1" />
-          <Photo src="사진2.jpg" alt="우리사진2" />
-          <Photo src="사진3.jpg" alt="우리사진3" />
+          <Photo src="사진1.jpg" alt="우리사진1" onClick={() => setModalImg("사진1.jpg")} />
+          <Photo src="사진2.jpg" alt="우리사진2" onClick={() => setModalImg("사진2.jpg")} />
+          <Photo src="사진3.jpg" alt="우리사진3" onClick={() => setModalImg("사진3.jpg")} />
         </Gallery>
+        {modalImg && (
+          <div
+            style={{
+              position: "fixed",
+              top: 0, left: 0, width: "100vw", height: "100vh",
+              background: "rgba(0,0,0,0.7)", display: "flex",
+              justifyContent: "center", alignItems: "center", zIndex: 999
+            }}
+            onClick={() => setModalImg(null)}
+          >
+            <img src={modalImg} alt="확대사진" style={{maxWidth: "80vw", maxHeight: "80vh", borderRadius: "24px"}} />
+          </div>
+        )}
         <Letter>
           사랑하는 예비 남편에게,<br /><br />
           너와 함께한 모든 순간이 소중하고, 앞으로의 모든 날도 함께하고 싶어.<br />
