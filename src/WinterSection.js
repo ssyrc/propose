@@ -29,7 +29,8 @@ const Letter = styled.p`
   text-align: center;
 `;
 
-const snowflakeImg = process.env.PUBLIC_URL + "/snowflake.png";
+const snowflakeImg = new window.Image();
+snowflakeImg.src = process.env.PUBLIC_URL + "/snowflake.png";
 
 function WinterSection() {
   return (
