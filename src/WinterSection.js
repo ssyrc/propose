@@ -54,7 +54,6 @@ function WinterSection() {
         언제나 내 곁에 있어줘서 고마워요.<br />
         앞으로도 함께 따뜻한 겨울을 보내고 싶어요.
       </Letter>
-      <img src="winter.jpg" alt="겨울 사진" style={{width: "60%", borderRadius: "16px", marginTop: "32px"}} />
     </Section>
   );
 }

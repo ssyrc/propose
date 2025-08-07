@@ -91,7 +91,6 @@ function SpringSection() {
         당신과 함께하는 모든 순간이 꽃길이었어요.<br />
         앞으로도 함께 걸어가고 싶어요.
       </Letter>
-      <img src="spring.jpg" alt="봄 사진" style={{width: "60%", borderRadius: "16px", marginTop: "32px"}} />
     </Section>
   );
 }

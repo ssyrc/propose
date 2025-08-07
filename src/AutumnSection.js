@@ -90,7 +90,6 @@ function AutumnSection() {
         당신과 쌓아온 추억이 낙엽처럼 아름답게 내려앉아요.<br />
         앞으로도 함께 따뜻한 계절을 맞이하고 싶어요.
       </Letter>
-      <img src="autumn.jpg" alt="가을 사진" style={{width: "60%", borderRadius: "16px", marginTop: "32px"}} />
     </Section>
   );
 }

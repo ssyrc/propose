@@ -7,6 +7,7 @@ import SpringSection from "./SpringSection";
 import SummerSection from "./SummerSection";
 import AutumnSection from "./AutumnSection";
 import WinterSection from "./WinterSection";
+import ProposalSection from "./ProposalSection";
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -108,6 +109,7 @@ function App() {
       <SummerSection />
       <AutumnSection />
       <WinterSection />
+      <ProposalSection />
     </>
   );
 }

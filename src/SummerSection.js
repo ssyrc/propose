@@ -52,7 +52,6 @@ const Letter = styled.p`
 function SummerSection() {
   return (
     <Section>
-      <Sand />
       <Waves>
         <Wavify
           fill="#b3e0f7"
@@ -73,6 +72,7 @@ function SummerSection() {
           style={{ position: "absolute", bottom: 0, left: 0, width: "100%" }}
         />
       </Waves>
+      <Sand />
       <Quote>여름, 파도가 치는 우리의 열정<br />"함께라면 어떤 바다도 두렵지 않아."</Quote>
       <Letter>
         뜨거운 햇살 아래, 파도 소리와 함께<br />
@@ -80,7 +80,6 @@ function SummerSection() {
         언제나 당신이 내 곁에 있어 든든했어요.<br />
         앞으로도 함께 바다를 건너고 싶어요.
       </Letter>
-      <img src="summer.jpg" alt="여름 사진" style={{width: "60%", borderRadius: "16px", marginTop: "32px", zIndex: 3}} />
     </Section>
   );
 }
