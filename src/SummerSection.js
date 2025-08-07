@@ -24,14 +24,14 @@ const Sand = styled.div`
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 60px; /* 기존 120px에서 60px로 줄임 */
+  height: 40px; /* 기존 120px에서 60px로 줄임 */
   background: linear-gradient(180deg, #ffe4b5 80%, #f9d99a 100%);
   z-index: 1;
 `;
 
 const Waves = styled.div`
   position: absolute;
-  bottom: 60px; /* sand 높이와 맞춤 */
+  bottom: 40px; /* sand 높이와 맞춤 */
   left: 0;
   width: 100%;
   height: 60px;
