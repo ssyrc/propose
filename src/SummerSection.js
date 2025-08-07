@@ -28,7 +28,9 @@ const Waves = styled.div`
   bottom: 120px;
   left: 0;
   width: 100%;
+  height: 120px;
   z-index: 2;
+  pointer-events: none;
 `;
 
 const Quote = styled.h2`
@@ -50,24 +52,27 @@ const Letter = styled.p`
 function SummerSection() {
   return (
     <Section>
+      <Sand />
       <Waves>
         <Wavify
           fill="#b3e0f7"
           paused={false}
           options={{ height: 40, amplitude: 30, speed: 0.22, points: 5 }}
+          style={{ position: "absolute", bottom: 0, left: 0, width: "100%" }}
         />
         <Wavify
           fill="#81d4fa"
           paused={false}
           options={{ height: 60, amplitude: 40, speed: 0.18, points: 7 }}
+          style={{ position: "absolute", bottom: 0, left: 0, width: "100%" }}
         />
         <Wavify
           fill="#4fc3f7"
           paused={false}
           options={{ height: 80, amplitude: 50, speed: 0.15, points: 6 }}
+          style={{ position: "absolute", bottom: 0, left: 0, width: "100%" }}
         />
       </Waves>
-      <Sand />
       <Quote>여름, 파도가 치는 우리의 열정<br />"함께라면 어떤 바다도 두렵지 않아."</Quote>
       <Letter>
         뜨거운 햇살 아래, 파도 소리와 함께<br />

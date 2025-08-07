@@ -33,11 +33,10 @@ function WinterSection() {
   const snowflakeImg = new window.Image();
   snowflakeImg.src = process.env.PUBLIC_URL + "/snowflake.png";
 
-  // 눈송이 개수 반으로 줄임
+  // 눈송이 개수 및 랜덤 투명도
   const snowflakeCount = 40;
   const snowflakeSizes = Array.from({ length: snowflakeCount }, () => 32 + Math.random() * 32); // 32~64px
-  const snowflakeAlphas = Array.from({ length: snowflakeCount }, () => 0.4 + Math.random() * 0.5); // 0.4~0.9
-
+  const snowflakeAlphas = Array.from({ length: snowflakeCount }, () => 0.2 + Math.random() * 0.5); 
   return (
     <Section>
       <Snowfall
