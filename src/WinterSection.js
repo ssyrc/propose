@@ -59,7 +59,8 @@ function WinterSection() {
   const snowflakeImg = new window.Image();
   snowflakeImg.src = process.env.PUBLIC_URL + "/snowflake.png";
   const snowflakeCount = 15;
-  const snowflakeSizes = Array.from({ length: snowflakeCount }, () => 32 + Math.random() * 32);
+  // 눈송이 크기를 60%로 줄임 (19~38)
+  const snowflakeSizes = Array.from({ length: snowflakeCount }, () => 19 + Math.random() * 19);
   const snowflakeAlphas = Array.from({ length: snowflakeCount }, () => 0.4 + Math.random() * 0.5);
 
   return (

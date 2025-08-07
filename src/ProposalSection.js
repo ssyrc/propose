@@ -114,7 +114,7 @@ function StarsCanvas() {
 
 function ProposalSection() {
   // 풀을 섹션 전체에, 진한/연한 풀 겹쳐서 흔들리게, 랜덤 간격
-  const grassCount = Math.floor(window.innerWidth / 20);
+  const grassCount = 15;
   // 랜덤 위치 생성 (중복 방지, 띄엄띄엄)
   const positions = [];
   while (positions.length < grassCount) {
