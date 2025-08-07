@@ -18,7 +18,7 @@ const Sand = styled.div`
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 120px;
+  height: 60px; /* 기존 120px에서 60px로 줄임 */
   background: linear-gradient(180deg, #ffe4b5 80%, #f9d99a 100%);
   z-index: 1;
 `;
