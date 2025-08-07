@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 
 const Section = styled.section`
@@ -12,8 +12,14 @@ const Section = styled.section`
   align-items: center;
 `;
 
+const FadeInUp = styled.div`
+  opacity: ${props => props.visible ? 1 : 0};
+  transform: ${props => props.visible ? "translateY(0)" : "translateY(40px)"};
+  transition: opacity 0.8s, transform 0.8s;
+`;
+
 const Quote = styled.h2`
-  color:rgb(212, 55, 115);
+  color: #d4af37;
   font-size: 2rem;
   margin-top: 80px;
   font-family: 'Montserrat', 'Nanum Myeongjo', serif;
@@ -28,9 +34,28 @@ const Letter = styled.p`
   text-align: center;
 `;
 
+function useFadeInOnScroll(ref) {
+  const [visible, setVisible] = useState(false);
+  useEffect(() => {
+    function onScroll() {
+      if (!ref.current) return;
+      const rect = ref.current.getBoundingClientRect();
+      setVisible(rect.top < window.innerHeight - 80);
+    }
+    window.addEventListener("scroll", onScroll);
+    onScroll();
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [ref]);
+  return visible;
+}
+
 function SpringSection() {
-  const canvasRef = useRef(null);
   const sectionRef = useRef(null);
+  const quoteRef = useRef(null);
+  const letterRef = useRef(null);
+  const quoteVisible = useFadeInOnScroll(quoteRef);
+  const letterVisible = useFadeInOnScroll(letterRef);
+  const canvasRef = useRef(null);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -42,21 +67,18 @@ function SpringSection() {
     canvas.height = height;
     const petalImg = new window.Image();
     petalImg.src = process.env.PUBLIC_URL + "/petal.png";
-
-    // 벚꽃 개수 반으로 줄이고 크기 키움
     const petals = [];
     for (let i = 0; i < 15; i++) {
       petals.push({
         x: Math.random() * width,
         y: Math.random() * height,
-        r: 40 + Math.random() * 32, // 40~72px로 더 크게
+        r: 40 + Math.random() * 32,
         speed: 1 + Math.random() * 2,
         angle: Math.random() * Math.PI * 2,
         rotate: Math.random() * 360,
         alpha: 0.4 + Math.random() * 0.5
       });
     }
-
     function draw() {
       ctx.clearRect(0, 0, width, height);
       petals.forEach(petal => {
@@ -84,13 +106,15 @@ function SpringSection() {
   return (
     <Section ref={sectionRef}>
       <canvas ref={canvasRef} style={{position: "absolute", top: 0, left: 0, width: "100%", height: "100%"}} />
-      <Quote>봄, 벚꽃이 휘날리는 우리의 시작<br />"너와 함께라서 모든 순간이 꽃이 된다."</Quote>
-      <Letter>
-        사랑하는 당신에게,<br />
-        봄의 벚꽃처럼 설레는 마음으로 이 편지를 전해요.<br />
-        당신과 함께하는 모든 순간이 꽃길이었어요.<br />
-        앞으로도 함께 걸어가고 싶어요.
-      </Letter>
+      <FadeInUp ref={quoteRef} visible={quoteVisible}><Quote>봄, 벚꽃이 휘날리는 우리의 시작<br />"너와 함께라서 모든 순간이 꽃이 된다."</Quote></FadeInUp>
+      <FadeInUp ref={letterRef} visible={letterVisible}>
+        <Letter>
+          사랑하는 당신에게,<br />
+          봄의 벚꽃처럼 설레는 마음으로 이 편지를 전해요.<br />
+          당신과 함께하는 모든 순간이 꽃길이었어요.<br />
+          앞으로도 함께 걸어가고 싶어요.
+        </Letter>
+      </FadeInUp>
     </Section>
   );
 }

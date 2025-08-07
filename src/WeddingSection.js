@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import styled, { keyframes } from "styled-components";
 import { FaRing } from "react-icons/fa";
 
@@ -47,21 +47,20 @@ const Grass = styled.div`
   position: absolute;
   bottom: 0;
   left: 0;
-  width: 100vw;
+  width: 100%;
   height: 80px;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: flex-end;
   z-index: 3;
 `;
 
 const GrassBlade = styled.div`
-  width: 0;
+  width: 8px;
   height: 60px;
-  margin: 0 2px;
-  border-left: 8px solid transparent;
-  border-right: 8px solid transparent;
-  border-bottom: 60px solid ${props => props.color || '#3b7a2a'};
+  margin: 0 4px;
+  background: linear-gradient(180deg, #a3e635 0%, #3b7a2a 100%);
+  border-radius: 0 0 8px 8px;
   animation: ${GrassAnim} 2.5s infinite ease-in-out;
   transform-origin: bottom center;
   opacity: 0.8;
@@ -106,9 +105,7 @@ function StarsCanvas() {
   return <canvas ref={canvasRef} style={{position: "absolute", top: 0, left: 0, width: "100%", height: "100%", zIndex: 1}} />;
 }
 
-function ProposalSection() {
-  // 풀을 섹션 전체에, 진한/연한 풀 겹쳐서 흔들리게
-  const grassCount = Math.floor(window.innerWidth / 20);
+function WeddingSection() {
   return (
     <Section>
       <StarsCanvas />
@@ -120,15 +117,12 @@ function ProposalSection() {
         앞으로의 모든 날도 함께해요.
       </Letter>
       <Grass>
-        {Array.from({ length: grassCount }).map((_, i) => (
-          <React.Fragment key={i}>
-            <GrassBlade color="#3b7a2a" style={{animationDelay: `${i * 0.2}s`}} />
-            <GrassBlade color="#a3e635" style={{animationDelay: `${i * 0.2 + 1}s`, opacity: 0.6}} />
-          </React.Fragment>
+        {Array.from({ length: 18 }).map((_, i) => (
+          <GrassBlade key={i} style={{animationDelay: `${i * 0.2}s`}} />
         ))}
       </Grass>
     </Section>
   );
 }
 
-export default ProposalSection;
+export default WeddingSection;

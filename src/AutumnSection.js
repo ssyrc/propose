@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 
 const Section = styled.section`
@@ -10,6 +10,12 @@ const Section = styled.section`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+`;
+
+const FadeInUp = styled.div`
+  opacity: ${props => props.visible ? 1 : 0};
+  transform: ${props => props.visible ? "translateY(0)" : "translateY(40px)"};
+  transition: opacity 0.8s, transform 0.8s;
 `;
 
 const Quote = styled.h2`
@@ -28,9 +34,28 @@ const Letter = styled.p`
   text-align: center;
 `;
 
+function useFadeInOnScroll(ref) {
+  const [visible, setVisible] = useState(false);
+  useEffect(() => {
+    function onScroll() {
+      if (!ref.current) return;
+      const rect = ref.current.getBoundingClientRect();
+      setVisible(rect.top < window.innerHeight - 80);
+    }
+    window.addEventListener("scroll", onScroll);
+    onScroll();
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [ref]);
+  return visible;
+}
+
 function AutumnSection() {
-  const canvasRef = useRef(null);
   const sectionRef = useRef(null);
+  const quoteRef = useRef(null);
+  const letterRef = useRef(null);
+  const quoteVisible = useFadeInOnScroll(quoteRef);
+  const letterVisible = useFadeInOnScroll(letterRef);
+  const canvasRef = useRef(null);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -83,13 +108,15 @@ function AutumnSection() {
   return (
     <Section ref={sectionRef}>
       <canvas ref={canvasRef} style={{position: "absolute", top: 0, left: 0, width: "100%", height: "100%"}} />
-      <Quote>가을, 낙엽이 내리는 우리의 깊이<br />"함께 쌓아온 추억이 낙엽처럼 아름답게 내려앉는다."</Quote>
-      <Letter>
-        노란 낙엽이 바람에 흩날릴 때마다<br />
-        우리 함께한 시간들이 소중하게 떠올라요.<br />
-        당신과 쌓아온 추억이 낙엽처럼 아름답게 내려앉아요.<br />
-        앞으로도 함께 따뜻한 계절을 맞이하고 싶어요.
-      </Letter>
+      <FadeInUp ref={quoteRef} visible={quoteVisible}><Quote>가을, 낙엽이 내리는 우리의 깊이<br />"함께 쌓아온 추억이 낙엽처럼 아름답게 내려앉는다."</Quote></FadeInUp>
+      <FadeInUp ref={letterRef} visible={letterVisible}>
+        <Letter>
+          노란 낙엽이 바람에 흩날릴 때마다<br />
+          우리 함께한 시간들이 소중하게 떠올라요.<br />
+          당신과 쌓아온 추억이 낙엽처럼 아름답게 내려앉아요.<br />
+          앞으로도 함께 따뜻한 계절을 맞이하고 싶어요.
+        </Letter>
+      </FadeInUp>
     </Section>
   );
 }
