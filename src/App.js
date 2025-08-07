@@ -3,6 +3,10 @@ import logo from './logo.svg';
 import './App.css';
 import styled, { createGlobalStyle } from "styled-components";
 import { FaHeart } from "react-icons/fa";
+import SpringSection from "./SpringSection";
+import SummerSection from "./SummerSection";
+import AutumnSection from "./AutumnSection";
+import WinterSection from "./WinterSection";
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -85,6 +89,10 @@ function App() {
           브라우저가 오디오를 지원하지 않습니다.
         </Music>
       </Container>
+      <SpringSection />
+      <SummerSection />
+      <AutumnSection />
+      <WinterSection />
     </>
   );
 }
