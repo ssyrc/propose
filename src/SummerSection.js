@@ -25,7 +25,7 @@ const Sand = styled.div`
 
 const Waves = styled.div`
   position: absolute;
-  bottom: 120px;
+  bottom: 60px; /* sand 높이와 맞춤 */
   left: 0;
   width: 100%;
   height: 120px;
