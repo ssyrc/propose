@@ -33,16 +33,19 @@ function WinterSection() {
   const snowflakeImg = new window.Image();
   snowflakeImg.src = process.env.PUBLIC_URL + "/snowflake.png";
 
-  // 눈송이 크기 랜덤하게 크게 생성
-  const snowflakeSizes = Array.from({ length: 80 }, () => 32 + Math.random() * 32); // 32~64px
+  // 눈송이 개수 반으로 줄임
+  const snowflakeCount = 40;
+  const snowflakeSizes = Array.from({ length: snowflakeCount }, () => 32 + Math.random() * 32); // 32~64px
+  const snowflakeAlphas = Array.from({ length: snowflakeCount }, () => 0.4 + Math.random() * 0.5); // 0.4~0.9
 
   return (
     <Section>
       <Snowfall
-        snowflakeCount={80}
+        snowflakeCount={snowflakeCount}
         images={[snowflakeImg]}
         style={{position: "absolute", top: 0, left: 0, width: "100%", height: "100%"}}
         radius={snowflakeSizes}
+        alpha={snowflakeAlphas}
       />
       <Quote>겨울, 눈이 내리는 우리의 약속<br />"차가운 계절에도 너와 함께라면 따뜻해."</Quote>
       <Letter>

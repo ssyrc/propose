@@ -36,7 +36,6 @@ function SpringSection() {
     const canvas = canvasRef.current;
     const section = sectionRef.current;
     const ctx = canvas.getContext("2d");
-    const petals = [];
     const width = window.innerWidth;
     const height = section.offsetHeight;
     canvas.width = width;
@@ -44,14 +43,17 @@ function SpringSection() {
     const petalImg = new window.Image();
     petalImg.src = process.env.PUBLIC_URL + "/petal.png";
 
-    for (let i = 0; i < 30; i++) {
+    // 벚꽃 개수 반으로 줄이고 크기 키움
+    const petals = [];
+    for (let i = 0; i < 15; i++) {
       petals.push({
         x: Math.random() * width,
         y: Math.random() * height,
-        r: 24 + Math.random() * 16,
+        r: 40 + Math.random() * 32, // 40~72px로 더 크게
         speed: 1 + Math.random() * 2,
         angle: Math.random() * Math.PI * 2,
-        rotate: Math.random() * 360
+        rotate: Math.random() * 360,
+        alpha: 0.4 + Math.random() * 0.5
       });
     }
 
@@ -59,7 +61,7 @@ function SpringSection() {
       ctx.clearRect(0, 0, width, height);
       petals.forEach(petal => {
         ctx.save();
-        ctx.globalAlpha = 0.8;
+        ctx.globalAlpha = petal.alpha;
         ctx.translate(petal.x, petal.y);
         ctx.rotate(petal.rotate * Math.PI / 180);
         ctx.drawImage(petalImg, -petal.r/2, -petal.r/2, petal.r, petal.r);
@@ -71,6 +73,7 @@ function SpringSection() {
         if (petal.y > height) {
           petal.y = -20;
           petal.x = Math.random() * width;
+          petal.alpha = 0.4 + Math.random() * 0.5;
         }
       });
       requestAnimationFrame(draw);

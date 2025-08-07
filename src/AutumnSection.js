@@ -36,7 +36,6 @@ function AutumnSection() {
     const canvas = canvasRef.current;
     const section = sectionRef.current;
     const ctx = canvas.getContext("2d");
-    const leaves = [];
     const width = window.innerWidth;
     const height = section.offsetHeight;
     canvas.width = width;
@@ -44,14 +43,16 @@ function AutumnSection() {
     const leafImg = new window.Image();
     leafImg.src = process.env.PUBLIC_URL + "/leaf.png";
 
-    for (let i = 0; i < 30; i++) {
+    const leaves = [];
+    for (let i = 0; i < 15; i++) {
       leaves.push({
         x: Math.random() * width,
         y: Math.random() * height,
         r: 32 + Math.random() * 16,
         speed: 1 + Math.random() * 2,
         angle: Math.random() * Math.PI * 2,
-        rotate: Math.random() * 360
+        rotate: Math.random() * 360,
+        alpha: 0.4 + Math.random() * 0.5 
       });
     }
 
@@ -59,7 +60,7 @@ function AutumnSection() {
       ctx.clearRect(0, 0, width, height);
       leaves.forEach(leaf => {
         ctx.save();
-        ctx.globalAlpha = 0.8;
+        ctx.globalAlpha = leaf.alpha;
         ctx.translate(leaf.x, leaf.y);
         ctx.rotate(leaf.rotate * Math.PI / 180);
         ctx.drawImage(leafImg, -leaf.r/2, -leaf.r/2, leaf.r, leaf.r);
@@ -71,6 +72,7 @@ function AutumnSection() {
         if (leaf.y > height) {
           leaf.y = -20;
           leaf.x = Math.random() * width;
+          leaf.alpha = 0.4 + Math.random() * 0.5;
         }
       });
       requestAnimationFrame(draw);
