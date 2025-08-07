@@ -115,8 +115,17 @@ function StarsCanvas() {
 }
 
 function ProposalSection() {
-  // 풀을 섹션 전체에, 진한/연한 풀 겹쳐서 흔들리게
+  // 풀을 섹션 전체에, 진한/연한 풀 겹쳐서 흔들리게, 랜덤 간격
   const grassCount = Math.floor(window.innerWidth / 20);
+  // 랜덤 위치 생성 (중복 방지, 띄엄띄엄)
+  const positions = [];
+  while (positions.length < grassCount) {
+    const pos = Math.floor(Math.random() * 1000) / 1000; // 0~1 사이 랜덤
+    if (!positions.some(p => Math.abs(p - pos) < 0.03)) {
+      positions.push(pos);
+    }
+  }
+  positions.sort((a, b) => a - b);
   return (
     <Section>
       <StarsCanvas />
@@ -128,10 +137,10 @@ function ProposalSection() {
         앞으로의 모든 날도 함께해요.
       </Letter>
       <Grass>
-        {Array.from({ length: grassCount }).map((_, i) => (
+        {positions.map((pos, i) => (
           <React.Fragment key={i}>
-            <GrassBlade color="#3b7a2a" style={{animationDelay: `${i * 0.2}s`}} />
-            <GrassBlade color="#a3e635" style={{animationDelay: `${i * 0.2 + 1}s`, opacity: 0.6}} />
+            <GrassBlade color="#3b7a2a" style={{left: `${pos * 100}%`, position: 'absolute', animationDelay: `${i * 0.2}s`}} />
+            <GrassBlade color="#a3e635" style={{left: `${pos * 100}%`, position: 'absolute', animationDelay: `${i * 0.2 + 1}s`, opacity: 0.6}} />
           </React.Fragment>
         ))}
       </Grass>

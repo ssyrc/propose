@@ -19,7 +19,7 @@ const FadeInUp = styled.div`
 `;
 
 const Quote = styled.h2`
-  color: #d4af37;
+  color: #e94f9b;
   font-size: 2rem;
   margin-top: 80px;
   font-family: 'Montserrat', 'Nanum Myeongjo', serif;
