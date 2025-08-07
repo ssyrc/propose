@@ -30,7 +30,7 @@ const Container = styled.div`
 `;
 
 const Title = styled.h1`
-  color:rgb(243, 148, 177);
+  color:rgb(0, 0, 0);
   font-size: 2.5rem;
   margin-bottom: 16px;
   font-family: 'Playfair Display', serif;

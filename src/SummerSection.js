@@ -4,12 +4,31 @@ import styled from "styled-components";
 
 const Section = styled.section`
   min-height: 100vh;
-  background: linear-gradient(135deg, #e0f7fa, #fffde4);
+  background: linear-gradient(180deg, #e0f7fa 60%, #ffe4b5 100%); /* 연한 파랑 -> 모래색 */
   position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
+`;
+
+const Sand = styled.div`
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 120px;
+  background: linear-gradient(180deg, #ffe4b5 80%, #f9d99a 100%);
+  z-index: 1;
+`;
+
+const Waves = styled.div`
+  position: absolute;
+  bottom: 120px;
+  left: 0;
+  width: 100%;
+  z-index: 2;
 `;
 
 const Quote = styled.h2`
@@ -31,6 +50,24 @@ const Letter = styled.p`
 function SummerSection() {
   return (
     <Section>
+      <Waves>
+        <Wavify
+          fill="#b3e0f7"
+          paused={false}
+          options={{ height: 40, amplitude: 30, speed: 0.22, points: 5 }}
+        />
+        <Wavify
+          fill="#81d4fa"
+          paused={false}
+          options={{ height: 60, amplitude: 40, speed: 0.18, points: 7 }}
+        />
+        <Wavify
+          fill="#4fc3f7"
+          paused={false}
+          options={{ height: 80, amplitude: 50, speed: 0.15, points: 6 }}
+        />
+      </Waves>
+      <Sand />
       <Quote>여름, 파도가 치는 우리의 열정<br />"함께라면 어떤 바다도 두렵지 않아."</Quote>
       <Letter>
         뜨거운 햇살 아래, 파도 소리와 함께<br />
@@ -38,19 +75,7 @@ function SummerSection() {
         언제나 당신이 내 곁에 있어 든든했어요.<br />
         앞으로도 함께 바다를 건너고 싶어요.
       </Letter>
-      <img src="summer.jpg" alt="여름 사진" style={{width: "60%", borderRadius: "16px", marginTop: "32px"}} />
-      <div style={{position: "absolute", bottom: 0, width: "100%"}}>
-        <Wavify
-          fill="#0077be"
-          paused={false}
-          options={{
-            height: 40,
-            amplitude: 30,
-            speed: 0.25,
-            points: 5
-          }}
-        />
-      </div>
+      <img src="summer.jpg" alt="여름 사진" style={{width: "60%", borderRadius: "16px", marginTop: "32px", zIndex: 3}} />
     </Section>
   );
 }
