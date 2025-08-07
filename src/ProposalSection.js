@@ -82,15 +82,23 @@ function StarsCanvas() {
         x: Math.random() * width,
         y: Math.random() * height * 0.7,
         r: 1 + Math.random() * 2,
+        baseAlpha: 0.5 + Math.random() * 0.5,
         alpha: 0.5 + Math.random() * 0.5,
+        twinkleSpeed: 0.8 + Math.random() * 1.2,
+        twinkleOffset: Math.random() * Math.PI * 2,
         color: Math.random() > 0.7 ? "#b39ddb" : "#fff"
       });
     }
-    function draw() {
+    let start = null;
+    function draw(ts) {
+      if (!start) start = ts;
+      const t = (ts - start) / 1000;
       ctx.clearRect(0, 0, width, height);
       stars.forEach(star => {
+        // Twinkle effect
+        star.alpha = star.baseAlpha + 0.4 * Math.sin(t * star.twinkleSpeed + star.twinkleOffset);
         ctx.save();
-        ctx.globalAlpha = star.alpha;
+        ctx.globalAlpha = Math.max(0.2, Math.min(1, star.alpha));
         ctx.beginPath();
         ctx.arc(star.x, star.y, star.r, 0, Math.PI * 2);
         ctx.fillStyle = star.color;
@@ -101,7 +109,7 @@ function StarsCanvas() {
       });
       requestAnimationFrame(draw);
     }
-    draw();
+    requestAnimationFrame(draw);
   }, []);
   return <canvas ref={canvasRef} style={{position: "absolute", top: 0, left: 0, width: "100%", height: "100%", zIndex: 1}} />;
 }
