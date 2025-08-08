@@ -99,8 +99,8 @@ function WinterSection() {
         ctx.beginPath();
         ctx.arc(snow.x, snow.y, snow.r, 0, Math.PI * 2);
         ctx.fillStyle = '#fff';
-        ctx.shadowColor = '#ffffff8f';
-        ctx.shadowBlur = 8;
+        ctx.shadowColor = '#444';
+        ctx.shadowBlur = 16;
         ctx.fill();
         ctx.restore();
         snow.y += snow.speed;
@@ -120,29 +120,29 @@ function WinterSection() {
         <canvas ref={canvasRef} style={{position: "absolute", top: 0, left: 0, width: "100%", height: "100%"}} />
         {/* 뒤쪽 어두운 눈 Wavify */}
         <div style={{ position: "absolute", bottom: 0, left: 0, width: "100%", height: "80px", zIndex: 1 }}>
-          <Wavify
-            fill="#bfc7d6c7"
-            paused={false}
-            options={{
-              height: 32,
-              amplitude: 16,
-              speed: 0.13,
-              points: 4
-            }}
-          />
+            <Wavify
+              fill="#bfc7d6c7"
+              paused={true}
+              options={{
+                height: 32,
+                amplitude: 16,
+                speed: 0.13,
+                points: 4
+              }}
+            />
         </div>
         {/* 앞쪽 밝은 눈 Wavify */}
         <div style={{ position: "absolute", bottom: 0, left: 0, width: "100%", height: "80px", zIndex: 2 }}>
-          <Wavify
-            fill="#fafcffff"
-            paused={false}
-            options={{
-              height: 40,
-              amplitude: 20,
-              speed: 0.18,
-              points: 5
-            }}
-          />
+            <Wavify
+              fill="#fafcffff"
+              paused={true}
+              options={{
+                height: 40,
+                amplitude: 20,
+                speed: 0.18,
+                points: 5
+              }}
+            />
         </div>
         <FadeInUp ref={quoteRef} visible={quoteVisible}>
           <Quote>겨울, 눈이 내리는 우리의 약속<br />"차가운 계절에도 너와 함께라면 따뜻해."</Quote>

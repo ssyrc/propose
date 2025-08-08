@@ -15,32 +15,22 @@ const NightContainer = styled.div`
   align-items: center;
   justify-content: center;
   position: relative;
-  background: url("/sanghai.jpg") center center/cover no-repeat;
+  background: url(${process.env.PUBLIC_URL + '/sanghai.jpg'}) center center/cover no-repeat;
   overflow: hidden;
 `;
 
-const FloatingTitle = styled.h1`
-  position: absolute;
-  top: 48px;
-  left: 50%;
-  transform: translateX(-50%);
+const Title = styled.h1`
+  margin-top: 56px;
   font-size: 4.2rem;
   font-family: 'Tangerine', cursive;
   color: #fff;
   text-shadow: 0 6px 32px #3a225c, 0 2px 8px #e94f9b;
   letter-spacing: 2px;
   z-index: 10;
-  display: flex;
-  align-items: center;
-  animation: floating 2.5s infinite ease-in-out;
+  text-align: center;
   @media (max-width: 600px) {
     font-size: 2.2rem;
-    top: 18px;
-  }
-  @keyframes floating {
-    0% { transform: translateX(-50%) translateY(0); }
-    50% { transform: translateX(-50%) translateY(-18px); }
-    100% { transform: translateX(-50%) translateY(0); }
+    margin-top: 18px;
   }
 `;
 
@@ -147,9 +137,7 @@ function App() {
     <>
       <GlobalStyle />
       <NightContainer>
-        <FloatingTitle>
-          Happy Birthday, my lover
-        </FloatingTitle>
+        <Title>Happy Birthday, my lover</Title>
         <Stars>
           {stars}
         </Stars>
