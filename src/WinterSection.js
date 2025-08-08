@@ -122,29 +122,33 @@ function WinterSection() {
         <canvas ref={canvasRef} style={{position: "absolute", top: 0, left: 0, width: "100%", height: "100%"}} />
         {/* 뒤쪽 어두운 눈 Wavify */}
         <div style={{ position: "absolute", bottom: 0, left: 0, width: "100%", height: "80px", zIndex: 1 }}>
-            <Wavify
-              fill="#bfc7d6c7"
-              paused={true}
-              options={{
-                height: 80,
-                amplitude: 22,
-                speed: 0.13,
-                points: 4
-              }}
-            />
+            <div style={{ position: "absolute", bottom: 0, left: 0, width: "100%", height: "80px", zIndex: 1 }}>
+                <Wavify
+                  fill="#bfc7d6c7"
+                  paused={true}
+                  options={{
+                    height: 80,
+                    amplitude: 22,
+                    speed: 0.13,
+                    points: 4
+                  }}
+                />
+            </div>
         </div>
         {/* 앞쪽 밝은 눈 Wavify */}
         <div style={{ position: "absolute", bottom: 0, left: 0, width: "100%", height: "80px", zIndex: 2 }}>
-            <Wavify
-              fill="#fafcffff"
-              paused={true}
-              options={{
-                height: 120,
-                amplitude: 28,
-                speed: 0.18,
-                points: 5
-              }}
-            />
+            <div style={{ position: "absolute", bottom: 0, left: 0, width: "100%", height: "120px", zIndex: 2 }}>
+                <Wavify
+                  fill="#fafcffff"
+                  paused={true}
+                  options={{
+                    height: 120,
+                    amplitude: 28,
+                    speed: 0.18,
+                    points: 5
+                  }}
+                />
+            </div>
         </div>
         <FadeInUp ref={quoteRef} visible={quoteVisible}>
           <Quote>겨울, 눈이 내리는 우리의 약속<br />"차가운 계절에도 너와 함께라면 따뜻해."</Quote>

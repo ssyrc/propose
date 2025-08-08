@@ -8,15 +8,15 @@ import WinterSection from "./WinterSection";
 import ProposalSection from "./ProposalSection";
 
 const NightContainer = styled.div`
-  min-height: auto;
-  width: auto;
+  min-height: 100vh;
+  width: 100vw;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   position: relative;
   background: url(${process.env.PUBLIC_URL + '/sanghai.jpg'}) center center/cover no-repeat;
-  overflow: visible;
+  overflow: hidden;
 `;
 
 const Title = styled.h1`
