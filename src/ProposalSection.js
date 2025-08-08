@@ -195,9 +195,12 @@ function ShootingStarCanvas() {
     let shootingStars = [];
     let lastTime = 0;
     function spawnStar() {
+      // x: width - 40, y: 40 대신 x, y를 top edge에서 랜덤하게
+      const startX = 40 + Math.random() * (width - 80);
+      const startY = 20 + Math.random() * 40;
       shootingStars.push({
-        x: width - 40,
-        y: 40,
+        x: startX,
+        y: startY,
         len: 220 + Math.random() * 60,
         speed: 13 + Math.random() * 5, // 더 빠르게
         alpha: 1,
