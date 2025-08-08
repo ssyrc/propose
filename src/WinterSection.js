@@ -1,5 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
 import styled from "styled-components";
+import Wavify from "react-wavify";
 
 const Section = styled.section`
   min-height: 100vh;
@@ -135,20 +136,46 @@ function WinterSection() {
   }, []);
 
   return (
-    <Section>
-      <canvas ref={canvasRef} style={{position: "absolute", top: 0, left: 0, width: "100%", height: "100%"}} />
-      <FadeInUp ref={quoteRef} visible={quoteVisible}>
-        <Quote>겨울, 눈이 내리는 우리의 약속<br />"차가운 계절에도 너와 함께라면 따뜻해."</Quote>
-      </FadeInUp>
-      <FadeInUp ref={letterRef} visible={letterVisible}>
-        <Letter>
-          하얀 눈이 소복이 쌓이는 겨울밤,<br />
-          당신과 함께라서 마음이 따뜻해져요.<br />
-          언제나 내 곁에 있어줘서 고마워요.<br />
-          앞으로도 함께 따뜻한 겨울을 보내고 싶어요.
-        </Letter>
-      </FadeInUp>
-    </Section>
+      <Section>
+        <canvas ref={canvasRef} style={{position: "absolute", top: 0, left: 0, width: "100%", height: "100%"}} />
+        {/* 뒤쪽 어두운 눈 Wavify */}
+        <div style={{ position: "absolute", bottom: 0, left: 0, width: "100%", height: "80px", zIndex: 1 }}>
+          <Wavify
+            fill="#bfc7d6"
+            paused={false}
+            options={{
+              height: 32,
+              amplitude: 16,
+              speed: 0.13,
+              points: 4
+            }}
+          />
+        </div>
+        {/* 앞쪽 밝은 눈 Wavify */}
+        <div style={{ position: "absolute", bottom: 0, left: 0, width: "100%", height: "80px", zIndex: 2 }}>
+          <Wavify
+            fill="#e0eafc"
+            paused={false}
+            options={{
+              height: 40,
+              amplitude: 20,
+              speed: 0.18,
+              points: 5
+            }}
+          />
+        </div>
+        <FadeInUp ref={quoteRef} visible={quoteVisible}>
+          <Quote>겨울, 눈이 내리는 우리의 약속<br />"차가운 계절에도 너와 함께라면 따뜻해."</Quote>
+        </FadeInUp>
+        <FadeInUp ref={letterRef} visible={letterVisible}>
+          <Letter>
+            하얀 눈이 소복이 쌓이는 겨울밤,<br />
+            당신과 함께라서 마음이 따뜻해져요.<br />
+            언제나 내 곁에 있어줘서 고마워요.<br />
+            앞으로도 함께 따뜻한 겨울을 보내고 싶어요.
+          </Letter>
+        </FadeInUp>
+      </Section>
   );
 }
 

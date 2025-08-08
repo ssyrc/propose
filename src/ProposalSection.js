@@ -138,11 +138,11 @@ function StarsCanvas() {
 }
 
 function ProposalSection() {
-  const grassCount = 15;
+  const grassCount = 30;
   const positions = [];
   while (positions.length < grassCount) {
     const pos = Math.floor(Math.random() * 1000) / 1000;
-    if (!positions.some(p => Math.abs(p - pos) < 0.03)) {
+    if (!positions.some(p => Math.abs(p - pos) < 0.02)) {
       positions.push(pos);
     }
   }
@@ -160,17 +160,17 @@ function ProposalSection() {
       </Letter>
       <Grass>
         {positions.map((pos, i) => (
-          <React.Fragment key={i}>
-            <GrassBlade
-              color="#3b7a2a"
-              style={{ left: `${pos * 100}%`, animationDelay: `${i * 0.2}s` }}
-            />
-            <GrassBlade
-              color="#a3e635"
-              opacity={0.6}
-              style={{ left: `${pos * 100}%`, animationDelay: `${i * 0.2 + 1}s` }}
-            />
-          </React.Fragment>
+          <GrassBlade
+            color={i % 4 === 0 ? '#6bbf59' : i % 3 === 0 ? '#4e9a3a' : '#3b7a2a'}
+            style={{
+              left: `${pos * 100}%`,
+              height: `${40 + Math.random() * 40}px`,
+              opacity: 0.7 + Math.random() * 0.3,
+              transform: `rotate(${Math.random() * 30 - 15}deg) skewY(${Math.random() * 18 - 9}deg) scaleX(${0.8 + Math.random() * 0.4})`,
+              borderRadius: `${6 + Math.random() * 12}px ${6 + Math.random() * 12}px 18px 18px`,
+              animationDelay: `${i * 0.2}s`
+            }}
+          />
         ))}
       </Grass>
     </Section>
