@@ -95,7 +95,7 @@ function SpringSection() {
     function draw() {
       ctx.clearRect(0, 0, width, height);
       petals.forEach(petal => {
-          const width = section.offsetWidth;
+        ctx.save();
         ctx.globalAlpha = petal.alpha;
         ctx.translate(petal.x, petal.y);
         ctx.rotate(petal.rotate * Math.PI / 180);
@@ -106,7 +106,7 @@ function SpringSection() {
         petal.angle += 0.01;
         petal.rotate += 0.5;
         if (petal.y > height) {
-            r: width < 500 ? 24 + Math.random() * 16 : 40 + Math.random() * 32,
+          petal.y = -20;
           petal.x = Math.random() * width;
           petal.alpha = 0.4 + Math.random() * 0.5;
         }

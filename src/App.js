@@ -2,6 +2,11 @@ import React, { useState } from "react";
 import logo from './logo.svg';
 import './App.css';
 import styled, { createGlobalStyle } from "styled-components";
+import SpringSection from "./SpringSection";
+import SummerSection from "./SummerSection";
+import AutumnSection from "./AutumnSection";
+import WinterSection from "./WinterSection";
+import ProposalSection from "./ProposalSection";
 
 const NightContainer = styled.div`
   min-height: 100vh;
@@ -11,7 +16,8 @@ const NightContainer = styled.div`
   align-items: center;
   justify-content: center;
   position: relative;
-  background: linear-gradient(90deg, #000 0%, rgba(0,0,0,0.85) 10%, rgba(0,0,0,0.6) 20%, transparent 30%, transparent 70%, rgba(0,0,0,0.6) 80%, rgba(0,0,0,0.85) 90%, #000 100%);
+  /* 이미지 양 끝 보랏빛(#3a225c, #5c3a7a)에서 검정(#000)으로 자연스럽게 그라데이션 */
+  background: linear-gradient(90deg, #3a225c 0%, #5c3a7a 10%, rgba(44,24,60,0.8) 20%, transparent 30%, transparent 70%, rgba(44,24,60,0.8) 80%, #5c3a7a 90%, #3a225c 100%), #000;
   overflow: hidden;
 `;
 
@@ -55,12 +61,6 @@ const QuoteBox = styled.div`
     border-radius: 12px;
   }
 `;
-import { FaHeart } from "react-icons/fa";
-import SpringSection from "./SpringSection";
-import SummerSection from "./SummerSection";
-import AutumnSection from "./AutumnSection";
-import WinterSection from "./WinterSection";
-import ProposalSection from "./ProposalSection";
 
 const GlobalStyle = createGlobalStyle`
   body {

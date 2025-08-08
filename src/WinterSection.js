@@ -1,5 +1,4 @@
-import React, { useRef, useState } from "react";
-import Snowfall from "react-snowfall";
+import React, { useRef, useState, useEffect } from "react";
 import styled from "styled-components";
 
 const Section = styled.section`
@@ -66,25 +65,78 @@ function useFadeInOnScroll(ref) {
 function WinterSection() {
   const quoteRef = useRef(null);
   const letterRef = useRef(null);
+  const canvasRef = useRef(null);
   const quoteVisible = useFadeInOnScroll(quoteRef);
   const letterVisible = useFadeInOnScroll(letterRef);
 
-  const snowflakeImg = new window.Image();
-  snowflakeImg.src = process.env.PUBLIC_URL + "/snowflake.png";
-  const snowflakeCount = 15;
-  // 눈송이 크기를 60%로 줄임 (19~38)
-  const snowflakeSizes = Array.from({ length: snowflakeCount }, () => 19 + Math.random() * 19);
-  const snowflakeAlphas = Array.from({ length: snowflakeCount }, () => 0.4 + Math.random() * 0.5);
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    const section = canvas.parentElement;
+    const ctx = canvas.getContext("2d");
+    const width = section.offsetWidth;
+    const height = section.offsetHeight;
+    canvas.width = width;
+    canvas.height = height;
+    // 눈송이
+    const snowCount = 40;
+    const snows = [];
+    for (let i = 0; i < snowCount; i++) {
+      snows.push({
+        x: Math.random() * width,
+        y: Math.random() * height * 0.8,
+        r: 3 + Math.random() * 5,
+        speed: 0.5 + Math.random() * 1.5,
+        alpha: 0.4 + Math.random() * 0.5
+      });
+    }
+    function draw() {
+      ctx.clearRect(0, 0, width, height);
+      // 눈송이
+      snows.forEach(snow => {
+        ctx.save();
+        ctx.globalAlpha = snow.alpha;
+        ctx.beginPath();
+        ctx.arc(snow.x, snow.y, snow.r, 0, Math.PI * 2);
+        ctx.fillStyle = '#fff';
+        ctx.shadowColor = '#fff';
+        ctx.shadowBlur = 8;
+        ctx.fill();
+        ctx.restore();
+        snow.y += snow.speed;
+        snow.x += Math.sin(snow.y / 40) * 0.8;
+        if (snow.y > height * 0.92) {
+          snow.y = -10;
+          snow.x = Math.random() * width;
+        }
+      });
+      // 눈이 쌓인 효과 (섹션 하단)
+      for (let i = 0; i < 30; i++) {
+        const x = (i / 30) * width;
+        // 뒤쪽(어두운) 눈
+        ctx.save();
+        ctx.globalAlpha = 0.5;
+        ctx.beginPath();
+        ctx.arc(x, height - 18, 14, 0, Math.PI * 2);
+        ctx.fillStyle = '#bfc7d6';
+        ctx.fill();
+        ctx.restore();
+        // 앞쪽(밝은) 눈
+        ctx.save();
+        ctx.globalAlpha = 0.8;
+        ctx.beginPath();
+        ctx.arc(x + 6, height - 10, 10, 0, Math.PI * 2);
+        ctx.fillStyle = '#fff';
+        ctx.fill();
+        ctx.restore();
+      }
+      requestAnimationFrame(draw);
+    }
+    draw();
+  }, []);
 
   return (
     <Section>
-      <Snowfall
-        snowflakeCount={snowflakeCount}
-        images={[snowflakeImg]}
-        style={{position: "absolute", top: 0, left: 0, width: "100%", height: "100%"}}
-        radius={snowflakeSizes}
-        alpha={snowflakeAlphas}
-      />
+      <canvas ref={canvasRef} style={{position: "absolute", top: 0, left: 0, width: "100%", height: "100%"}} />
       <FadeInUp ref={quoteRef} visible={quoteVisible}>
         <Quote>겨울, 눈이 내리는 우리의 약속<br />"차가운 계절에도 너와 함께라면 따뜻해."</Quote>
       </FadeInUp>
