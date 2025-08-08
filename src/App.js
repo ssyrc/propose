@@ -2,12 +2,6 @@ import React, { useState } from "react";
 import logo from './logo.svg';
 import './App.css';
 import styled, { createGlobalStyle } from "styled-components";
-import { FaHeart } from "react-icons/fa";
-import SpringSection from "./SpringSection";
-import SummerSection from "./SummerSection";
-import AutumnSection from "./AutumnSection";
-import WinterSection from "./WinterSection";
-import ProposalSection from "./ProposalSection";
 
 const NightContainer = styled.div`
   min-height: 100vh;
