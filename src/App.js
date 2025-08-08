@@ -8,15 +8,15 @@ import WinterSection from "./WinterSection";
 import ProposalSection from "./ProposalSection";
 
 const NightContainer = styled.div`
-  min-height: 100vh;
-  width: 100vw;
+  min-height: auto;
+  width: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   position: relative;
-  background: url(${process.env.PUBLIC_URL + '/sanghai.jpg'}) center center/auto no-repeat;
-  overflow: hidden;
+  background: url(${process.env.PUBLIC_URL + '/sanghai.jpg'}) center center/cover no-repeat;
+  overflow: visible;
 `;
 
 const Title = styled.h1`
@@ -28,6 +28,7 @@ const Title = styled.h1`
   letter-spacing: 2px;
   z-index: 10;
   text-align: center;
+  animation: titleTwinkle 2.2s infinite ease-in-out;
   @media (max-width: 600px) {
     font-size: 2.2rem;
     margin-top: 18px;
@@ -92,8 +93,8 @@ function App() {
     const left = Math.random() * 100;
     const top = Math.random() * 60;
     const size = 1 + Math.random() * 2;
-    const opacity = 0.5 + Math.random() * 0.5;
-    const twinkle = Math.random() * 2 + 1;
+    const baseOpacity = 0.3 + Math.random() * 0.4;
+    const twinkle = Math.random() * 2 + 1.2;
     return (
       <div
         key={i}
@@ -105,9 +106,9 @@ function App() {
           height: size,
           borderRadius: '50%',
           background: '#fff',
-          opacity: opacity,
-          boxShadow: '0 0 8px #fff',
-          animation: `twinkle ${twinkle}s infinite ease-in-out`,
+          opacity: baseOpacity,
+          boxShadow: '0 0 12px #b39ddb',
+          animation: `starTwinkle ${twinkle}s infinite ease-in-out`,
         }}
       />
     );
@@ -181,10 +182,18 @@ function App() {
       <WinterSection />
       <ProposalSection />
       <style>{`
-        @keyframes twinkle {
-          0% { opacity: 0.5; }
+        @keyframes titleTwinkle {
+          0% { opacity: 0.85; }
+          20% { opacity: 1; }
           50% { opacity: 1; }
-          100% { opacity: 0.5; }
+          80% { opacity: 1; }
+          100% { opacity: 0.85; }
+        }
+        @keyframes starTwinkle {
+          0% { opacity: 0.2; filter: brightness(0.7); }
+          40% { opacity: 1; filter: brightness(1.3); }
+          60% { opacity: 0.7; filter: brightness(1.1); }
+          100% { opacity: 0.2; filter: brightness(0.7); }
         }
       `}</style>
     </>

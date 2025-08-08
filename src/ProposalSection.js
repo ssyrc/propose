@@ -94,8 +94,8 @@ function StarsCanvas() {
       x: Math.random() * width,
       y: Math.random() * height * 0.7,
       r: 1 + Math.random() * 2,
-      baseAlpha: 0.5 + Math.random() * 0.5,
-      alpha: 0.5 + Math.random() * 0.5,
+      baseAlpha: 0.2 + Math.random() * 0.3,
+      alpha: 0.2 + Math.random() * 0.3,
       twinkleSpeed: 0.8 + Math.random() * 1.2,
       twinkleOffset: Math.random() * Math.PI * 2,
       color: Math.random() > 0.7 ? "#b39ddb" : "#fff"
@@ -110,14 +110,17 @@ function StarsCanvas() {
       ctx.clearRect(0, 0, width, height);
 
       stars.forEach(star => {
-        star.alpha = star.baseAlpha + 0.4 * Math.sin(t * star.twinkleSpeed + star.twinkleOffset);
+        // 더 강한 트윙클 효과
+        const twinkle = Math.sin(t * star.twinkleSpeed + star.twinkleOffset);
+        star.alpha = star.baseAlpha + 0.8 * Math.max(0, twinkle);
         ctx.save();
-        ctx.globalAlpha = Math.max(0.2, Math.min(1, star.alpha));
+        ctx.globalAlpha = Math.max(0.15, Math.min(1, star.alpha));
+        ctx.filter = `brightness(${0.7 + 0.7 * Math.max(0, twinkle)})`;
         ctx.beginPath();
         ctx.arc(star.x, star.y, star.r, 0, Math.PI * 2);
         ctx.fillStyle = star.color;
         ctx.shadowColor = star.color;
-        ctx.shadowBlur = 8;
+        ctx.shadowBlur = 10;
         ctx.fill();
         ctx.restore();
       });
@@ -195,8 +198,8 @@ function ShootingStarCanvas() {
       shootingStars.push({
         x: width - 40,
         y: 40,
-        len: 180 + Math.random() * 80,
-        speed: 7 + Math.random() * 3,
+        len: 220 + Math.random() * 60,
+        speed: 13 + Math.random() * 5, // 더 빠르게
         alpha: 1,
         trail: []
       });
@@ -205,34 +208,32 @@ function ShootingStarCanvas() {
       ctx.clearRect(0, 0, width, height);
       // 별똥별
       shootingStars.forEach(star => {
-        // trail
-        star.trail.push({x: star.x, y: star.y});
-        if (star.trail.length > 12) star.trail.shift();
-        for (let i = 0; i < star.trail.length; i++) {
-          ctx.save();
-          ctx.globalAlpha = star.alpha * (i / star.trail.length) * 0.7;
-          ctx.beginPath();
-          ctx.arc(star.trail[i].x, star.trail[i].y, 2 + i * 0.7, 0, Math.PI * 2);
-          ctx.fillStyle = '#fff';
-          ctx.shadowColor = '#b39ddb';
-          ctx.shadowBlur = 8;
-          ctx.fill();
-          ctx.restore();
-        }
-        // head
+        // trail (얇은 실처럼)
+        ctx.save();
+        ctx.globalAlpha = star.alpha * 0.7;
+        ctx.strokeStyle = '#fff';
+        ctx.shadowColor = '#b39ddb';
+        ctx.shadowBlur = 8;
+        ctx.lineWidth = 1.2;
+        ctx.beginPath();
+        ctx.moveTo(star.x, star.y);
+        ctx.lineTo(star.x - star.len * 0.7, star.y + star.len * 0.7);
+        ctx.stroke();
+        ctx.restore();
+        // head (작게)
         ctx.save();
         ctx.globalAlpha = star.alpha;
         ctx.beginPath();
-        ctx.arc(star.x, star.y, 4, 0, Math.PI * 2);
+        ctx.arc(star.x, star.y, 1.7, 0, Math.PI * 2);
         ctx.fillStyle = '#fff';
         ctx.shadowColor = '#b39ddb';
-        ctx.shadowBlur = 16;
+        ctx.shadowBlur = 10;
         ctx.fill();
         ctx.restore();
         // move
         star.x -= star.speed;
         star.y += star.speed * 0.7;
-        star.alpha -= 0.012;
+        star.alpha -= 0.018;
       });
       shootingStars = shootingStars.filter(star => star.alpha > 0 && star.x > -40 && star.y < height + 40);
       // 랜덤하게 별똥별 생성
