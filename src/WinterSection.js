@@ -100,7 +100,9 @@ function WinterSection() {
         ctx.arc(snow.x, snow.y, snow.r, 0, Math.PI * 2);
         ctx.fillStyle = '#fff';
         ctx.shadowColor = '#444';
-        ctx.shadowBlur = 16;
+        ctx.shadowBlur = 10;
+        ctx.shadowOffsetX = 14;
+        ctx.shadowOffsetY = 16;
         ctx.fill();
         ctx.restore();
         snow.y += snow.speed;
@@ -124,7 +126,7 @@ function WinterSection() {
               fill="#bfc7d6c7"
               paused={true}
               options={{
-                height: 32,
+                height: 40,
                 amplitude: 16,
                 speed: 0.13,
                 points: 4
@@ -137,7 +139,7 @@ function WinterSection() {
               fill="#fafcffff"
               paused={true}
               options={{
-                height: 40,
+                height: 60,
                 amplitude: 20,
                 speed: 0.18,
                 points: 5

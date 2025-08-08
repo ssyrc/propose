@@ -24,7 +24,7 @@ const Title = styled.h1`
   font-size: 4.2rem;
   font-family: 'Tangerine', cursive;
   color: #fff;
-  text-shadow: 0 6px 32px #3a225c, 0 2px 8px #e94f9b;
+  text-shadow: 0 6px 32px #3a225c;
   letter-spacing: 2px;
   z-index: 10;
   text-align: center;
