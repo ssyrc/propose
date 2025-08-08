@@ -164,7 +164,7 @@ function ProposalSection() {
             color={i % 4 === 0 ? '#6bbf59' : i % 3 === 0 ? '#4e9a3a' : '#3b7a2a'}
             style={{
               left: `${pos * 100}%`,
-              height: `${40 + Math.random() * 40}px`,
+              height: `${80 + Math.random() * 60}px`, // 더 높게
               opacity: 0.7 + Math.random() * 0.3,
               transform: `rotate(${Math.random() * 30 - 15}deg) skewY(${Math.random() * 18 - 9}deg) scaleX(${0.8 + Math.random() * 0.4})`,
               borderRadius: `${6 + Math.random() * 12}px ${6 + Math.random() * 12}px 18px 18px`,
@@ -173,7 +173,83 @@ function ProposalSection() {
           />
         ))}
       </Grass>
+      {/* 별똥별 애니메이션 */}
+      <ShootingStarCanvas />
     </Section>
+  );
+}
+
+// 별똥별 캔버스 컴포넌트
+function ShootingStarCanvas() {
+  const canvasRef = React.useRef(null);
+  React.useEffect(() => {
+    const canvas = canvasRef.current;
+    const ctx = canvas.getContext("2d");
+    const width = window.innerWidth;
+    const height = canvas.parentElement.offsetHeight;
+    canvas.width = width;
+    canvas.height = height;
+    let shootingStars = [];
+    let lastTime = 0;
+    function spawnStar() {
+      shootingStars.push({
+        x: width - 40,
+        y: 40,
+        len: 180 + Math.random() * 80,
+        speed: 7 + Math.random() * 3,
+        alpha: 1,
+        trail: []
+      });
+    }
+    function draw(ts) {
+      ctx.clearRect(0, 0, width, height);
+      // 별똥별
+      shootingStars.forEach(star => {
+        // trail
+        star.trail.push({x: star.x, y: star.y});
+        if (star.trail.length > 12) star.trail.shift();
+        for (let i = 0; i < star.trail.length; i++) {
+          ctx.save();
+          ctx.globalAlpha = star.alpha * (i / star.trail.length) * 0.7;
+          ctx.beginPath();
+          ctx.arc(star.trail[i].x, star.trail[i].y, 2 + i * 0.7, 0, Math.PI * 2);
+          ctx.fillStyle = '#fff';
+          ctx.shadowColor = '#b39ddb';
+          ctx.shadowBlur = 8;
+          ctx.fill();
+          ctx.restore();
+        }
+        // head
+        ctx.save();
+        ctx.globalAlpha = star.alpha;
+        ctx.beginPath();
+        ctx.arc(star.x, star.y, 4, 0, Math.PI * 2);
+        ctx.fillStyle = '#fff';
+        ctx.shadowColor = '#b39ddb';
+        ctx.shadowBlur = 16;
+        ctx.fill();
+        ctx.restore();
+        // move
+        star.x -= star.speed;
+        star.y += star.speed * 0.7;
+        star.alpha -= 0.012;
+      });
+      shootingStars = shootingStars.filter(star => star.alpha > 0 && star.x > -40 && star.y < height + 40);
+      // 랜덤하게 별똥별 생성
+      if (Math.random() < 0.008 && ts - lastTime > 800) {
+        spawnStar();
+        lastTime = ts;
+      }
+      requestAnimationFrame(draw);
+    }
+    requestAnimationFrame(draw);
+    return () => { shootingStars = []; };
+  }, []);
+  return (
+    <canvas
+      ref={canvasRef}
+      style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", zIndex: 0, pointerEvents: "none" }}
+    />
   );
 }
 

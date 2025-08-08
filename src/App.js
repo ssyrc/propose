@@ -15,7 +15,7 @@ const NightContainer = styled.div`
   align-items: center;
   justify-content: center;
   position: relative;
-  background: url(${process.env.PUBLIC_URL + '/sanghai.jpg'}) center center/cover no-repeat;
+  background: url(${process.env.PUBLIC_URL + '/sanghai.jpg'}) center center/auto no-repeat;
   overflow: hidden;
 `;
 

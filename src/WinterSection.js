@@ -99,10 +99,10 @@ function WinterSection() {
         ctx.beginPath();
         ctx.arc(snow.x, snow.y, snow.r, 0, Math.PI * 2);
         ctx.fillStyle = '#fff';
-        ctx.shadowColor = '#444';
-        ctx.shadowBlur = 10;
-        ctx.shadowOffsetX = 14;
-        ctx.shadowOffsetY = 16;
+        ctx.shadowColor = 'rgba(180,180,180,0.35)'; // 연한 회색
+        ctx.shadowBlur = 8;
+        ctx.shadowOffsetX = snow.r * 0.9; // 우측 하단에 딱 붙게
+        ctx.shadowOffsetY = snow.r * 0.9;
         ctx.fill();
         ctx.restore();
         snow.y += snow.speed;
@@ -126,8 +126,8 @@ function WinterSection() {
               fill="#bfc7d6c7"
               paused={true}
               options={{
-                height: 40,
-                amplitude: 16,
+                height: 80,
+                amplitude: 22,
                 speed: 0.13,
                 points: 4
               }}
@@ -139,8 +139,8 @@ function WinterSection() {
               fill="#fafcffff"
               paused={true}
               options={{
-                height: 60,
-                amplitude: 20,
+                height: 120,
+                amplitude: 28,
                 speed: 0.18,
                 points: 5
               }}
