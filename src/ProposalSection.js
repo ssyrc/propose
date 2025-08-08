@@ -163,8 +163,8 @@ function ProposalSection() {
       </Letter>
       <Grass>
         {positions.map((pos, i) => {
-          const bladeHeight1 = 50 + Math.random() * 60;
-          const bladeHeight2 = 30 + Math.random() * 40;
+          const bladeHeight1 = 120 + Math.random() * 80;
+          const bladeHeight2 = 80 + Math.random() * 60;
           return (
             <React.Fragment key={i}>
               <GrassBlade
@@ -223,15 +223,15 @@ function ShootingStarCanvas() {
         ctx.shadowBlur = 8;
         ctx.lineWidth = 1.2;
         ctx.beginPath();
-        ctx.moveTo(star.x, star.y);
-        ctx.lineTo(star.x - star.len * 0.7, star.y + star.len * 0.7);
+        ctx.moveTo(star.x - star.len * 0.7, star.y + star.len * 0.7);
+        ctx.lineTo(star.x, star.y);
         ctx.stroke();
         ctx.restore();
-        // head (작게)
+        // head (작게, 왼쪽 끝)
         ctx.save();
         ctx.globalAlpha = star.alpha;
         ctx.beginPath();
-        ctx.arc(star.x, star.y, 1.7, 0, Math.PI * 2);
+        ctx.arc(star.x - star.len * 0.7, star.y + star.len * 0.7, 1.7, 0, Math.PI * 2);
         ctx.fillStyle = '#fff';
         ctx.shadowColor = '#b39ddb';
         ctx.shadowBlur = 10;
