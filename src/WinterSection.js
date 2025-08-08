@@ -11,6 +11,11 @@ const Section = styled.section`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 0 20px;
+  @media (max-width: 600px) {
+    min-height: 80vh;
+    padding: 0 5px;
+  }
 `;
 
 const FadeInUp = styled.div`
@@ -24,6 +29,10 @@ const Quote = styled.h2`
   font-size: 2rem;
   margin-top: 80px;
   font-family: 'Montserrat', 'Nanum Myeongjo', serif;
+  @media (max-width: 600px) {
+    font-size: 1.2rem;
+    margin-top: 40px;
+  }
 `;
 
 const Letter = styled.p`
@@ -33,6 +42,10 @@ const Letter = styled.p`
   margin: 24px 0 0 0;
   line-height: 1.7;
   text-align: center;
+  @media (max-width: 600px) {
+    font-size: 0.95rem;
+    margin: 12px 0 0 0;
+  }
 `;
 
 function useFadeInOnScroll(ref) {

@@ -2,6 +2,59 @@ import React, { useState } from "react";
 import logo from './logo.svg';
 import './App.css';
 import styled, { createGlobalStyle } from "styled-components";
+
+const NightContainer = styled.div`
+  min-height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background: linear-gradient(90deg, #000 0%, rgba(0,0,0,0.85) 10%, rgba(0,0,0,0.6) 20%, transparent 30%, transparent 70%, rgba(0,0,0,0.6) 80%, rgba(0,0,0,0.85) 90%, #000 100%);
+  overflow: hidden;
+`;
+
+const ShanghaiImage = styled.img`
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: auto;
+  height: 100vh;
+  object-fit: contain;
+  z-index: 1;
+  pointer-events: none;
+  user-select: none;
+`;
+
+const Stars = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 2;
+  pointer-events: none;
+`;
+
+const QuoteBox = styled.div`
+  position: relative;
+  z-index: 3;
+  background: rgba(0,0,0,0.5);
+  border-radius: 24px;
+  padding: 32px 24px;
+  margin-top: 80px;
+  max-width: 600px;
+  text-align: center;
+  color: #fff;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.32);
+  @media (max-width: 600px) {
+    padding: 16px 8px;
+    margin-top: 32px;
+    border-radius: 12px;
+  }
+`;
 import { FaHeart } from "react-icons/fa";
 import SpringSection from "./SpringSection";
 import SummerSection from "./SummerSection";
@@ -19,22 +72,16 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-const Container = styled.div`
-  max-width: 700px;
-  margin: 40px auto;
-  background: #fff;
-  border-radius: 24px;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.12);
-  padding: 40px;
-  text-align: center;
-  border: 2px solid #e0e0e0;
-`;
+// ...기존 Container 제거...
 
 const Title = styled.h1`
   color:rgb(0, 0, 0);
   font-size: 2.5rem;
   margin-bottom: 16px;
   font-family: 'Playfair Display', serif;
+  @media (max-width: 600px) {
+    font-size: 1.5rem;
+  }
 `;
 
 const Letter = styled.p`
@@ -42,24 +89,10 @@ const Letter = styled.p`
   color: #333; /* 진한 회색 */
   margin: 32px 0;
   line-height: 1.7;
-`;
-
-const Gallery = styled.div`
-  display: flex;
-  gap: 16px;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin-bottom: 32px;
-`;
-
-const Photo = styled.img`
-  width: 120px;
-  height: 120px;
-  object-fit: cover;
-  border-radius: 16px;
-  border: 2px solid #e0e0e0;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-  cursor: pointer;
+  @media (max-width: 600px) {
+    font-size: 1rem;
+    margin: 16px 0;
+  }
 `;
 
 const Music = styled.audio`
@@ -68,43 +101,54 @@ const Music = styled.audio`
 `;
 
 function App() {
-  const [modalImg, setModalImg] = useState(null);
   return (
     <>
       <GlobalStyle />
-      <Container>
-        <Title>
-          <FaHeart color="#ffb3b3" /> 우리의 사랑 이야기 <FaHeart color="#ffb3b3" />
-        </Title>
-        <Gallery>
-          <Photo src="사진1.jpg" alt="우리사진1" onClick={() => setModalImg("사진1.jpg")} />
-          <Photo src="사진2.jpg" alt="우리사진2" onClick={() => setModalImg("사진2.jpg")} />
-          <Photo src="사진3.jpg" alt="우리사진3" onClick={() => setModalImg("사진3.jpg")} />
-        </Gallery>
-        {modalImg && (
-          <div
-            style={{
-              position: "fixed",
-              top: 0, left: 0, width: "100vw", height: "100vh",
-              background: "rgba(0,0,0,0.7)", display: "flex",
-              justifyContent: "center", alignItems: "center", zIndex: 999
-            }}
-            onClick={() => setModalImg(null)}
-          >
-            <img src={modalImg} alt="확대사진" style={{maxWidth: "80vw", maxHeight: "80vh", borderRadius: "24px"}} />
-          </div>
-        )}
-        <Letter>
-          사랑하는 예비 남편에게,<br /><br />
-          너와 함께한 모든 순간이 소중하고, 앞으로의 모든 날도 함께하고 싶어.<br />
-          나의 마음을 담아, 이 웹사이트로 프로포즈를 전해.<br /><br />
-          영원히 너를 사랑할게. <br />- 너의 예비 신부가
-        </Letter>
-        <Music controls autoPlay loop>
+      <NightContainer>
+        <ShanghaiImage src={process.env.PUBLIC_URL + "/sanghai.png"} alt="Shanghai Night" />
+        <Stars>
+          {[...Array(80)].map((_, i) => {
+            const left = Math.random() * 100;
+            const top = Math.random() * 60;
+            const size = 1 + Math.random() * 2;
+            const opacity = 0.5 + Math.random() * 0.5;
+            return (
+              <div key={i} style={{
+                position: 'absolute',
+                left: left + '%',
+                top: top + '%',
+                width: size,
+                height: size,
+                borderRadius: '50%',
+                background: '#fff',
+                opacity: opacity,
+                boxShadow: '0 0 8px #fff'
+              }} />
+            );
+          })}
+        </Stars>
+        <QuoteBox>
+          <h1 style={{
+            fontFamily: 'Dancing Script, Playfair Display, cursive',
+            fontSize: '2.6rem',
+            marginBottom: '18px',
+            color: '#fff',
+            fontWeight: 400,
+            letterSpacing: '1px'
+          }}>
+            Happy Birthday, my lover
+          </h1>
+          <p style={{fontSize: '1.2rem', marginBottom: '12px', color: '#e0e0e0', fontFamily: 'Noto Sans KR, sans-serif'}}>
+            밤의 고요함 속에서, 너와 나의 마음은 별처럼 반짝인다.<br />
+            이 순간, 우리의 사랑은 도시의 불빛보다 더 빛나고 있어.<br />
+            함께 걷는 이 밤, 우리의 꿈이 상하이의 야경을 밝힌다.<br />
+          </p>
+        </QuoteBox>
+        <Music controls autoPlay loop style={{zIndex: 4, marginTop: '32px', width: '100%', maxWidth: '400px'}}>
           <source src="bgm.mp3" type="audio/mp3" />
           브라우저가 오디오를 지원하지 않습니다.
         </Music>
-      </Container>
+      </NightContainer>
       <SpringSection />
       <SummerSection />
       <AutumnSection />

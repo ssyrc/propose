@@ -12,6 +12,11 @@ const Section = styled.section`
   justify-content: center;
   align-items: center;
   overflow: hidden;
+  padding: 0 20px;
+  @media (max-width: 600px) {
+    min-height: 80vh;
+    padding: 0 5px;
+  }
 `;
 
 const Title = styled.h2`
@@ -20,6 +25,10 @@ const Title = styled.h2`
   font-family: 'Montserrat', 'Nanum Myeongjo', serif;
   margin-bottom: 32px;
   z-index: 2;
+  @media (max-width: 600px) {
+    font-size: 1.3rem;
+    margin-bottom: 18px;
+  }
 `;
 
 const RingIcon = styled(FaRing)`
@@ -36,6 +45,10 @@ const Letter = styled.p`
   margin: 0 0 32px 0;
   text-align: center;
   z-index: 2;
+  @media (max-width: 600px) {
+    font-size: 1rem;
+    margin: 0 0 16px 0;
+  }
 `;
 
 const GrassAnim = keyframes`
@@ -51,6 +64,9 @@ const Grass = styled.div`
   left: 0;
   bottom: 0;
   z-index: 3;
+  @media (max-width: 600px) {
+    height: 40px;
+  }
 `;
 
 const GrassBlade = styled.div`

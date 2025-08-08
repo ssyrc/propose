@@ -10,6 +10,11 @@ const Section = styled.section`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 0 20px;
+  @media (max-width: 600px) {
+    min-height: 80vh;
+    padding: 0 5px;
+  }
 `;
 
 const FadeInUp = styled.div`
@@ -23,6 +28,10 @@ const Quote = styled.h2`
   font-size: 2rem;
   margin-top: 80px;
   font-family: 'Montserrat', 'Nanum Myeongjo', serif;
+  @media (max-width: 600px) {
+    font-size: 1.2rem;
+    margin-top: 40px;
+  }
 `;
 
 const Letter = styled.p`
@@ -32,6 +41,10 @@ const Letter = styled.p`
   margin: 24px 0 0 0;
   line-height: 1.7;
   text-align: center;
+  @media (max-width: 600px) {
+    font-size: 0.95rem;
+    margin: 12px 0 0 0;
+  }
 `;
 
 function useFadeInOnScroll(ref) {
@@ -82,7 +95,7 @@ function SpringSection() {
     function draw() {
       ctx.clearRect(0, 0, width, height);
       petals.forEach(petal => {
-        ctx.save();
+          const width = section.offsetWidth;
         ctx.globalAlpha = petal.alpha;
         ctx.translate(petal.x, petal.y);
         ctx.rotate(petal.rotate * Math.PI / 180);
@@ -93,7 +106,7 @@ function SpringSection() {
         petal.angle += 0.01;
         petal.rotate += 0.5;
         if (petal.y > height) {
-          petal.y = -20;
+            r: width < 500 ? 24 + Math.random() * 16 : 40 + Math.random() * 32,
           petal.x = Math.random() * width;
           petal.alpha = 0.4 + Math.random() * 0.5;
         }
