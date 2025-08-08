@@ -99,7 +99,7 @@ function WinterSection() {
         ctx.beginPath();
         ctx.arc(snow.x, snow.y, snow.r, 0, Math.PI * 2);
         ctx.fillStyle = '#fff';
-        ctx.shadowColor = '#fff';
+        ctx.shadowColor = '#ffffff8f';
         ctx.shadowBlur = 8;
         ctx.fill();
         ctx.restore();
@@ -110,26 +110,6 @@ function WinterSection() {
           snow.x = Math.random() * width;
         }
       });
-      // 눈이 쌓인 효과 (섹션 하단)
-      for (let i = 0; i < 30; i++) {
-        const x = (i / 30) * width;
-        // 뒤쪽(어두운) 눈
-        ctx.save();
-        ctx.globalAlpha = 0.5;
-        ctx.beginPath();
-        ctx.arc(x, height - 18, 14, 0, Math.PI * 2);
-        ctx.fillStyle = '#bfc7d6';
-        ctx.fill();
-        ctx.restore();
-        // 앞쪽(밝은) 눈
-        ctx.save();
-        ctx.globalAlpha = 0.8;
-        ctx.beginPath();
-        ctx.arc(x + 6, height - 10, 10, 0, Math.PI * 2);
-        ctx.fillStyle = '#fff';
-        ctx.fill();
-        ctx.restore();
-      }
       requestAnimationFrame(draw);
     }
     draw();
@@ -141,7 +121,7 @@ function WinterSection() {
         {/* 뒤쪽 어두운 눈 Wavify */}
         <div style={{ position: "absolute", bottom: 0, left: 0, width: "100%", height: "80px", zIndex: 1 }}>
           <Wavify
-            fill="#bfc7d6"
+            fill="#bfc7d6c7"
             paused={false}
             options={{
               height: 32,
@@ -154,7 +134,7 @@ function WinterSection() {
         {/* 앞쪽 밝은 눈 Wavify */}
         <div style={{ position: "absolute", bottom: 0, left: 0, width: "100%", height: "80px", zIndex: 2 }}>
           <Wavify
-            fill="#e0eafc"
+            fill="#fafcffff"
             paused={false}
             options={{
               height: 40,
