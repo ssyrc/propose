@@ -61,14 +61,14 @@ const MusicBox = styled.div`
   align-items: center;
 `;
 
-// 화면에 꽉 차게 이미지를 배경으로 적용하는 함수
-// 이미지의 원본 사이즈를 기준으로, 화면의 가로 길이에 맞춰 이미지를 확대하고 세로 길이만큼 Container를 사용
+// 이미지 원본 사이즈 및 화면 크기 기준 계산 (중복 제거)
+const IMAGE_WIDTH = 3840; // sanghai_full.jpg의 실제 가로(px)
+const IMAGE_HEIGHT = 6000; // sanghai_full.jpg의 실제 세로(px)
+const vw = window.innerWidth;
+const scale = vw / IMAGE_WIDTH;
+const containerHeight = IMAGE_HEIGHT * scale;
+
 function getImageContainerStyle() {
-  const IMAGE_WIDTH = 3840; // 예시: sanghai_full.jpg의 실제 가로(px)
-  const IMAGE_HEIGHT = 6000; // 예시: sanghai_full.jpg의 실제 세로(px)
-  const vw = window.innerWidth;
-  const scale = vw / IMAGE_WIDTH;
-  const containerHeight = IMAGE_HEIGHT * scale;
   return {
     width: `${vw}px`,
     height: `${containerHeight}px`,
@@ -150,13 +150,8 @@ function App() {
   }, []);
 
 
-  // messageLines 위치 계산
-  const IMAGE_WIDTH = 3840;
-  const IMAGE_HEIGHT = 6000;
-  const vw = window.innerWidth;
-  const scale = vw / IMAGE_WIDTH;
-  const containerHeight = IMAGE_HEIGHT * scale;
-  const firstLineTop = containerHeight * 0.2;
+  // messageLines 위치 계산 (이미 계산된 값 재사용)
+  const firstLineTop = containerHeight * 0.4;
   const lastLineBottom = containerHeight * 0.98;
   const lineCount = messageLines.length;
   const lineGap = (lastLineBottom - firstLineTop) / (lineCount - 1);

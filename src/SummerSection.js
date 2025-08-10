@@ -3,14 +3,15 @@ import Wavify from "react-wavify";
 import styled from "styled-components";
 
 const Section = styled.section`
-  min-height: 100vh;
+  width: 100vw;
+  height: 100vh;
   background: linear-gradient(180deg, #caf1f7ff 0%, #e7f5f7ff 50%, #fffbe7 100%);
   position: relative;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  overflow: hidden;
   padding: 0 20px 0 20px;
   @media (max-width: 600px) {
     min-height: 80vh;

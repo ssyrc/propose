@@ -88,6 +88,9 @@ function AutumnSection() {
     const ctx = canvas.getContext("2d");
     const width = window.innerWidth;
     const height = section.offsetHeight;
+    section.style.width = '100vw';
+    section.style.height = '100vh';
+    section.style.overflow = 'hidden';
     canvas.width = width;
     canvas.height = height;
     const leafImg = new window.Image();
@@ -131,7 +134,7 @@ function AutumnSection() {
   }, []);
 
   return (
-    <Section ref={sectionRef}>
+  <Section ref={sectionRef} style={{ width: '100vw', height: '100vh', overflow: 'hidden' }}>
       <canvas ref={canvasRef} style={{position: "absolute", top: 0, left: 0, width: "100%", height: "100%"}} />
       <FadeInUp ref={quoteRef} visible={quoteVisible}><Quote>가을, </Quote></FadeInUp>
       <FadeInUp ref={letterRef} visible={letterVisible}>

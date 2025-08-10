@@ -3,7 +3,8 @@ import styled from "styled-components";
 import Wavify from "react-wavify";
 
 const Section = styled.section`
-  min-height: 100vh;
+  width: 100vw;
+  height: 100vh;
   background: linear-gradient(180deg, #e0eafc, #fff, #f8bbd0);
   position: relative;
   overflow: hidden;
