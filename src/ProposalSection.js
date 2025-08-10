@@ -224,7 +224,7 @@ function ShootingStarCanvas() {
             });
       shootingStars = shootingStars.filter(star => star.alpha > 0 && star.x > -40 && star.y < height + 40);
       // 랜덤하게 별똥별 생성
-      if (Math.random() < 0.008 && ts - lastTime > 800) {
+      if (Math.random() < 0.03 && ts - lastTime > 300) {
         spawnStar();
         lastTime = ts;
       }

@@ -150,6 +150,17 @@ function App() {
   }, []);
 
 
+  // messageLines 위치 계산
+  const IMAGE_WIDTH = 3840;
+  const IMAGE_HEIGHT = 6000;
+  const vw = window.innerWidth;
+  const scale = vw / IMAGE_WIDTH;
+  const containerHeight = IMAGE_HEIGHT * scale;
+  const firstLineTop = containerHeight * 0.2;
+  const lastLineBottom = containerHeight * 0.98;
+  const lineCount = messageLines.length;
+  const lineGap = (lastLineBottom - firstLineTop) / (lineCount - 1);
+
   return (
     <>
       <GlobalStyle />
@@ -158,42 +169,30 @@ function App() {
         <Stars>
           {stars}
         </Stars>
-        <div
-          style={{
-            position: "absolute",
-            top: "120px",
-            left: "50%",
-            transform: "translateX(-50%)",
-            zIndex: 4,
-            width: "100vw",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "flex-start",
-            textAlign: "center",
-            fontSize: "1.35rem",
-            color: "#fff",
-            fontFamily: "Noto Sans KR, 'Tangerine', cursive",
-            textShadow: "0 2px 16px #3a225c, 0 0 24px #fff",
-            lineHeight: 2.2,
-          }}
-        >
-          {messageLines.map((line, idx) => (
-            <div
-              key={idx}
-              style={{
-                opacity: visibleMsgLines > idx ? 1 : 0,
-                transition: "opacity 0.8s",
-                filter: line ? "brightness(1.5) drop-shadow(0 0 12px #fff)" : "none",
-                marginBottom: line ? "12px" : "32px",
-                width: "100%",
-                textAlign: "center",
-              }}
-            >
-              {line}
-            </div>
-          ))}
-        </div>
+        {messageLines.map((line, idx) => (
+          <div
+            key={idx}
+            style={{
+              position: "absolute",
+              top: `${firstLineTop + lineGap * idx}px`,
+              left: "50%",
+              transform: "translateX(-50%)",
+              zIndex: 4,
+              width: "100vw",
+              fontSize: "1.35rem",
+              color: "#fff",
+              fontFamily: "Noto Sans KR, 'Tangerine', cursive",
+              textShadow: "0 2px 16px #3a225c, 0 0 24px #fff",
+              lineHeight: 2.2,
+              opacity: visibleMsgLines > idx ? 1 : 0,
+              transition: "opacity 0.8s",
+              filter: line ? "brightness(1.5) drop-shadow(0 0 12px #fff)" : "none",
+              textAlign: "center",
+            }}
+          >
+            {line}
+          </div>
+        ))}
       </div>
       <SpringSection />
       <SummerSection />
