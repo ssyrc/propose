@@ -66,7 +66,7 @@ const messageLines = [
 
 const Letter = styled.p`
   font-size: 1.1rem;
-  color: #444;
+  color: #000000ff;
   font-family: 'Nanum Myeongjo', 'Montserrat', sans-serif;
   margin: 24px 0 0 0;
   line-height: 3.4;

@@ -28,7 +28,7 @@ const Quote = styled.h2`
   font-size: 2rem;
   margin-top: 80px;
   font-family: 'Montserrat', 'Nanum Myeongjo', serif;
-    text-align: left;
+    text-align: center;
     @media (max-width: 600px) {
       font-size: 1.2rem;
       margin-top: 40px;
@@ -41,7 +41,7 @@ const Letter = styled.p`
   font-family: 'Nanum Myeongjo', 'Montserrat', sans-serif;
   margin: 24px 0 0 0;
   line-height: 3.4;
-  text-align: left;
+  text-align: center;
   position: relative;
   @media (max-width: 600px) {
     font-size: 0.95rem;

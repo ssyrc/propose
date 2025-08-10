@@ -20,6 +20,7 @@
 # To-Do
 ## 0. App.js
 - 디즈니 활용 아이디어 있을지? 
+- Bridge Section 으로 이어지는 부분 어떻게 자연스럽게 할지
 
 ## 1. Spring/Summer/Autumn/Winter
 - 편지 쓰는 형식으로
