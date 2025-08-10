@@ -74,7 +74,7 @@ const BridgeSection = () => (
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    background: 'linear-gradient(180deg, #f9f6f2 0%, #eaeaea 60%, #fff 100%)',
+    background: 'linear-gradient(180deg, #08275E 0%, #9cb8e7ff 50%, #ffdafeff 100%)',
     overflow: 'hidden',
   }}>
     {messageLines.map((line, idx) => (
