@@ -217,19 +217,19 @@ function App() {
         <div style={{
           position: "relative",
           zIndex: 4,
-          marginTop: "180px",
+          marginTop: "120px",
           maxWidth: "700px",
           width: "100%",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          justifyContent: "center",
+          justifyContent: "flex-start",
           textAlign: "center",
           fontSize: "1.35rem",
           color: "#fff",
           fontFamily: "Noto Sans KR, 'Tangerine', cursive",
           textShadow: "0 2px 16px #3a225c, 0 0 24px #fff",
-          lineHeight: 18,
+          lineHeight: 2.2,
           padding: "0 12px"
         }}>
           {messageLines.map((line, idx) => (
@@ -239,7 +239,9 @@ function App() {
                 opacity: visibleMsgLines > idx ? 1 : 0,
                 transition: "opacity 0.8s",
                 filter: line ? "brightness(1.5) drop-shadow(0 0 12px #fff)" : "none",
-                marginBottom: line ? "80px" : "180px"
+                marginBottom: line ? "12px" : "32px",
+                width: "100%",
+                textAlign: "center"
               }}
             >{line}</div>
           ))}
