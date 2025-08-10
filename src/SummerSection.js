@@ -11,7 +11,7 @@ const Section = styled.section`
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  padding: 0 20px;
+  padding: 0 20px 0 20px;
   @media (max-width: 600px) {
     min-height: 80vh;
     padding: 0 5px;
@@ -48,7 +48,7 @@ const Quote = styled.h2`
 const Letter = styled.p`
   font-size: 1.1rem;
   color: #444;
-  font-family: 'Nanum Pen Script', 'Tangerine', cursive;
+  font-family: 'Nanum Myeongjo', 'Montserrat', sans-serif;
   margin: 24px 0 0 0;
   line-height: 3.4;
   text-align: right;
