@@ -10,28 +10,28 @@ import ProposalSection from "./ProposalSection";
 const NightContainer = styled.div`
   min-height: 100vh;
   width: 100vw;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   position: relative;
-  background: url(${process.env.PUBLIC_URL + '/sanghai.jpg'}) center center/cover no-repeat;
+  background: url(${process.env.PUBLIC_URL + '/sanghai_full.jpg'}) center center/cover no-repeat;
   overflow: hidden;
 `;
 
 const Title = styled.h1`
-  margin-top: 56px;
+  position: absolute;
+  top: 56px;
+  left: 50%;
+  transform: translateX(-50%);
   font-size: 4.2rem;
   font-family: 'Tangerine', cursive;
   color: #fff;
-  text-shadow: 0 6px 32px #3a225c;
+  text-shadow: 0 6px 32px #3a225c, 0 0 24px #fff;
   letter-spacing: 2px;
   z-index: 10;
   text-align: center;
   animation: titleTwinkle 2.2s infinite ease-in-out;
+  filter: brightness(1.5) drop-shadow(0 0 12px #fff);
   @media (max-width: 600px) {
     font-size: 2.2rem;
-    margin-top: 18px;
+    top: 18px;
   }
 `;
 
@@ -151,7 +151,7 @@ function App() {
   }, []);
 
 
-  // 한글자씩 반짝임
+  // 원래 Title 반짝임 복원
   const titleText = "Happy Birthday, my lover";
   const titleSpans = titleText.split("").map((char, idx) => (
     <span
@@ -163,6 +163,49 @@ function App() {
       }}
     >{char === " " ? "\u00A0" : char}</span>
   ));
+
+  // 아래 문장들 한 줄씩 나타나는 애니메이션
+  const messageLines = [
+    "우리의 시간선이 같은 방향을 보고 출발하여",
+    "같은 속도로 흘러간다는 것이",
+    "어찌나 아름답고 편안한지 모릅니다",
+    "",
+    "미래의 시간선이 항상 행복으로 가득차 있지는 않겠지만",
+    "그것마저 인생의 아름다움으로 포함되길 원합니다",
+    "당신과 궁극적인 아름다움을 함께 하게 되어 감사합니다",
+    "",
+    "우리의 시간이 느리게 천천히 ",
+    "그리고 깊게 흘러가길 바랍니다",
+    "하루하루를 충분히 헤엄치길 바랍니다",
+    "",
+    "우리는 조금 더 행복해지기 위한 선택을 했습니다",
+    "복잡한 세상 속에서 우리는 우리를 위해 살길 바랍니다",
+    "근본적인 서로의 행복을 위하여 말입니다",
+    "",
+    "사랑의 정의를 아직도 말로써 내리지는 못했지만",
+    "우리의 눈동자가, 따뜻했던 시간들과,",
+    "마음 한 켠을 아릿하게 채우는 그것이 ",
+    "사랑이라면 사랑이겠지요",
+    "",
+    "그것이 사랑이라면 네, 당신을 사랑합니다",
+    "그리고 감사합니다, 나에게 와주어서",
+    "잘 부탁드립니다, 당신의 내가 되겠습니다",
+    "",
+    "당신의 순간들을 앞으로 함께 하게 되어 영광입니다",
+    "여느 때와 같지만 조금은 더 특별한 날",
+    "빛나는 당신과 함께여서 감사합니다"
+  ];
+  const [visibleMsgLines, setVisibleMsgLines] = React.useState(0);
+  React.useEffect(() => {
+    function onScroll() {
+      const scrollY = window.scrollY;
+      // 한 줄씩 60px마다 추가로 나타남
+      setVisibleMsgLines(Math.min(messageLines.length, Math.floor(scrollY / 60) + 1));
+    }
+    window.addEventListener("scroll", onScroll);
+    onScroll();
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
   return (
     <>
       <GlobalStyle />
@@ -171,13 +214,32 @@ function App() {
         <Stars>
           {stars}
         </Stars>
-        <QuoteBox>
-          <p style={{fontSize: '1.2rem', marginBottom: '12px', color: '#e0e0e0', fontFamily: 'Noto Sans KR, sans-serif'}}>
-            밤의 고요함 속에서, 너와 나의 마음은 별처럼 반짝인다.<br />
-            이 순간, 우리의 사랑은 도시의 불빛보다 더 빛나고 있어.<br />
-            함께 걷는 이 밤, 우리의 꿈이 상하이의 야경을 밝힌다.<br />
-          </p>
-        </QuoteBox>
+        <div style={{
+          position: "relative",
+          zIndex: 4,
+          marginTop: "180px",
+          maxWidth: "700px",
+          width: "100%",
+          textAlign: "center",
+          fontSize: "1.35rem",
+          color: "#fff",
+          fontFamily: "Noto Sans KR, 'Tangerine', cursive",
+          textShadow: "0 2px 16px #3a225c, 0 0 24px #fff",
+          lineHeight: 1.8,
+          padding: "0 12px"
+        }}>
+          {messageLines.map((line, idx) => (
+            <div
+              key={idx}
+              style={{
+                opacity: visibleMsgLines > idx ? 1 : 0,
+                transition: "opacity 0.8s",
+                filter: line ? "brightness(1.5) drop-shadow(0 0 12px #fff)" : "none",
+                marginBottom: line ? "8px" : "18px"
+              }}
+            >{line}</div>
+          ))}
+        </div>
         <MusicBox>
           <button
             onClick={handleToggle}

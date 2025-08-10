@@ -4,18 +4,18 @@ import styled from "styled-components";
 
 const Section = styled.section`
   min-height: 100vh;
-  background: linear-gradient(180deg, #e0f7fa 60%, #ffe4b5 100%); /* 연한 파랑 -> 모래색 */
+  background: linear-gradient(135deg, #e0f7fa, #ffe4b5, #fffbe7);
   position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   overflow: hidden;
-    padding: 0 20px;
-    @media (max-width: 600px) {
-      min-height: 80vh;
-      padding: 0 5px;
-    }
+  padding: 0 20px;
+  @media (max-width: 600px) {
+    min-height: 80vh;
+    padding: 0 5px;
+  }
 `;
 
 const FadeInUp = styled.div`
