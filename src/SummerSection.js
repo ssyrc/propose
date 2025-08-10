@@ -113,14 +113,14 @@ function SummerSection() {
       </Waves>
       <Sand />
       <FadeInUp ref={quoteRef} visible={quoteVisible}>
-        <Quote>여름, 파도가 치는 우리의 열정<br />"함께라면 어떤 바다도 두렵지 않아."</Quote>
+        <Quote>여름, </Quote>
       </FadeInUp>
       <FadeInUp ref={letterRef} visible={letterVisible}>
         <Letter>
-          뜨거운 햇살 아래, 파도 소리와 함께<br />
-          당신과 나란히 걷던 그 여름을 기억해요.<br />
-          언제나 당신이 내 곁에 있어 든든했어요.<br />
-          앞으로도 함께 바다를 건너고 싶어요.
+          사랑의 정의를 아직도 말로써 내리지는 못했지만<br />
+          우리의 눈동자가, 따뜻했던 시간들과,<br />
+          마음 한 켠을 아릿하게 채우는 그것이<br />
+          사랑이라면 사랑이겠지요,
         </Letter>
       </FadeInUp>
     </Section>

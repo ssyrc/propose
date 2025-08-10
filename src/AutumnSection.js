@@ -121,13 +121,12 @@ function AutumnSection() {
   return (
     <Section ref={sectionRef}>
       <canvas ref={canvasRef} style={{position: "absolute", top: 0, left: 0, width: "100%", height: "100%"}} />
-      <FadeInUp ref={quoteRef} visible={quoteVisible}><Quote>가을, 낙엽이 내리는 우리의 깊이<br />"함께 쌓아온 추억이 낙엽처럼 아름답게 내려앉는다."</Quote></FadeInUp>
+      <FadeInUp ref={quoteRef} visible={quoteVisible}><Quote>가을, </Quote></FadeInUp>
       <FadeInUp ref={letterRef} visible={letterVisible}>
         <Letter>
-          노란 낙엽이 바람에 흩날릴 때마다<br />
-          우리 함께한 시간들이 소중하게 떠올라요.<br />
-          당신과 쌓아온 추억이 낙엽처럼 아름답게 내려앉아요.<br />
-          앞으로도 함께 따뜻한 계절을 맞이하고 싶어요.
+          그것이 사랑이라면 네, 당신을 사랑합니다.<br />
+          그리고 감사합니다, 나에게 와주어서<br />
+          잘 부탁드립니다, 당신의 내가 되겠습니다.
         </Letter>
       </FadeInUp>
     </Section>

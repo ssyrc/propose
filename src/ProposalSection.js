@@ -22,9 +22,13 @@ const Section = styled.section`
 const Title = styled.h2`
   color: #fff;
   font-size: 2.3rem;
-  font-family: 'Montserrat', 'Nanum Myeongjo', serif;
+  font-family: 'Tangerine', cursive;
   margin-bottom: 32px;
   z-index: 2;
+  text-shadow: 0 6px 32px #3a225c, 0 0 24px #fff;
+  letter-spacing: 2px;
+  text-align: center;
+  filter: brightness(1.5) drop-shadow(0 0 12px #fff);
   @media (max-width: 600px) {
     font-size: 1.3rem;
     margin-bottom: 18px;
@@ -114,19 +118,37 @@ function StarsCanvas() {
 }
 
 function ProposalSection() {
-
+  const titleText = "Will You Marry Me?";
+  const titleSpans = titleText.split("").map((char, idx) => (
+    <span
+      key={idx}
+      style={{
+        display: "inline-block",
+        animation: `charTwinkle 1.6s ${0.12 * idx}s infinite ease-in-out`,
+        textShadow: "0 6px 32px #3a225c, 0 0 24px #fff",
+      }}
+    >{char === " " ? "\u00A0" : char}</span>
+  ));
   return (
     <Section>
       <StarsCanvas />
       <RingIcon />
-      <Title>나랑 결혼해줄래?</Title>
+      <Title>{titleSpans}</Title>
       <Letter>
-        우리의 모든 계절을 함께 걸어온 당신에게,<br />
-        이제 내 마음을 담아 진심으로 청합니다.<br />
-        앞으로의 모든 날도 함께해요.
+        우리의 모든 계절이 아름답고 깊길 바랍니다.<br />
+        당신의 반짝임과 나의 반짝임이 순간을 수놓길 바랍니다.<br />
+        사랑하는 당신에게,
       </Letter>
       {/* 별똥별 애니메이션 */}
       <ShootingStarCanvas />
+      <style>{`
+        @keyframes charTwinkle {
+          0% { opacity: 0.7; filter: brightness(0.8); }
+          40% { opacity: 1; filter: brightness(1.5); }
+          60% { opacity: 0.8; filter: brightness(1.1); }
+          100% { opacity: 0.7; filter: brightness(0.8); }
+        }
+      `}</style>
     </Section>
   );
 }

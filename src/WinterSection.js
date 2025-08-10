@@ -122,14 +122,13 @@ function WinterSection() {
     <Section>
       <canvas ref={canvasRef} style={{position: "absolute", top: 0, left: 0, width: "100%", height: "100%"}} />
       <FadeInUp ref={quoteRef} visible={quoteVisible}>
-        <Quote>겨울, 눈이 내리는 우리의 약속<br />"차가운 계절에도 너와 함께라면 따뜻해."</Quote>
+        <Quote>겨울, </Quote>
       </FadeInUp>
       <FadeInUp ref={letterRef} visible={letterVisible}>
         <Letter>
-          하얀 눈이 소복이 쌓이는 겨울밤,<br />
-          당신과 함께라서 마음이 따뜻해져요.<br />
-          언제나 내 곁에 있어줘서 고마워요.<br />
-          앞으로도 함께 따뜻한 겨울을 보내고 싶어요.
+          당신의 순간들을 앞으로 함께 하게 되어 영광입니다.<br />
+          여느 때와 같지만 조금은 더 특별한 날,<br />
+          빛나는 당신과 함께여서 감사합니다.
         </Letter>
       </FadeInUp>
     </Section>

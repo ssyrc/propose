@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const Section = styled.section`
   min-height: 100vh;
-  background: linear-gradient(180deg, #ffe4b5 0%, #fffbe7 60%, #e0eafc 100%);
+  background: linear-gradient(180deg, #fff0f6 0%, #ffe7feff 60%, #e0f7fa 100%);
   position: relative;
   overflow: hidden;
   display: flex;
@@ -119,13 +119,12 @@ function SpringSection() {
   return (
     <Section ref={sectionRef}>
       <canvas ref={canvasRef} style={{position: "absolute", top: 0, left: 0, width: "100%", height: "100%"}} />
-      <FadeInUp ref={quoteRef} visible={quoteVisible}><Quote>봄, 벚꽃이 휘날리는 우리의 시작<br />"너와 함께라서 모든 순간이 꽃이 된다."</Quote></FadeInUp>
+      <FadeInUp ref={quoteRef} visible={quoteVisible}><Quote>봄, </Quote></FadeInUp>
       <FadeInUp ref={letterRef} visible={letterVisible}>
         <Letter>
-          사랑하는 당신에게,<br />
-          봄의 벚꽃처럼 설레는 마음으로 이 편지를 전해요.<br />
-          당신과 함께하는 모든 순간이 꽃길이었어요.<br />
-          앞으로도 함께 걸어가고 싶어요.
+          우리는 조금 더 행복해지기 위한 선택을 했습니다.<br />
+          복잡한 세상 속에서 우리는 우리를 위해 살길 바랍니다.<br />
+          근본적인 서로의 행복을 위하여 말입니다.
         </Letter>
       </FadeInUp>
     </Section>
