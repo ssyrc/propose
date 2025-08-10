@@ -64,6 +64,8 @@ function useFadeInOnScroll(ref) {
 }
 
 function WinterSection() {
+  const quoteRef = useRef(null);
+  const letterRef = useRef(null);
   const quoteVisible = useFadeInOnScroll(quoteRef);
   const letterVisible = useFadeInOnScroll(letterRef);
   const canvasRef = useRef(null);
