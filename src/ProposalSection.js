@@ -40,14 +40,6 @@ const RingIcon = styled(FaRing)`
   font-size: 5rem;
   margin-bottom: 24px;
   z-index: 2;
-  filter: drop-shadow(0 0 16px #fff) brightness(2);
-  animation: ringTwinkle 1.8s infinite ease-in-out;
-  @keyframes ringTwinkle {
-    0% { filter: drop-shadow(0 0 8px #fff) brightness(1.2); }
-    40% { filter: drop-shadow(0 0 32px #fff) brightness(2.5); }
-    60% { filter: drop-shadow(0 0 16px #fff) brightness(1.7); }
-    100% { filter: drop-shadow(0 0 8px #fff) brightness(1.2); }
-  }
 `;
 
 const Letter = styled.p`
@@ -190,11 +182,11 @@ function ShootingStarCanvas() {
       const startX = 40 + Math.random() * (width - 80);
       const startY = 20 + Math.random() * 40;
       shootingStars.push({
-        x: startX,
-        y: startY,
-        len: 220 + Math.random() * 60,
-        speed: 13 + Math.random() * 5, // 더 빠르게
-        alpha: 1,
+        x: startX + Math.random() * 40 - 20,
+        y: startY + Math.random() * 40 - 20,
+        len: 80 + Math.random() * 180, // trail 길이 랜덤
+        speed: 8 + Math.random() * 6,
+        alpha: 0.7 + Math.random() * 0.3,
         trail: []
       });
     }
@@ -214,21 +206,22 @@ function ShootingStarCanvas() {
         ctx.lineTo(star.x, star.y);
         ctx.stroke();
         ctx.restore();
-        // head (작게, 왼쪽 끝)
+        // head (더 반짝이게, 밝기와 shadow 강화)
         ctx.save();
-        ctx.globalAlpha = star.alpha;
+        ctx.globalAlpha = Math.min(1, star.alpha * 1.2);
         ctx.beginPath();
-        ctx.arc(star.x - star.len * 0.7, star.y + star.len * 0.7, 1.7, 0, Math.PI * 2);
+        ctx.arc(star.x - star.len * 0.7, star.y + star.len * 0.7, 2.2, 0, Math.PI * 2);
         ctx.fillStyle = '#fff';
-        ctx.shadowColor = '#b39ddb';
-        ctx.shadowBlur = 10;
+        ctx.shadowColor = '#fff';
+        ctx.shadowBlur = 22;
+        ctx.filter = 'brightness(2)';
         ctx.fill();
         ctx.restore();
-        // move
-        star.x -= star.speed;
-        star.y += star.speed * 0.7;
-        star.alpha -= 0.018;
-      });
+        // move (더 자연스럽게, 약간의 랜덤성 추가)
+        star.x -= star.speed * (0.95 + Math.random() * 0.1);
+        star.y += star.speed * (0.65 + Math.random() * 0.15);
+        star.alpha -= 0.018 + Math.random() * 0.01;
+            });
       shootingStars = shootingStars.filter(star => star.alpha > 0 && star.x > -40 && star.y < height + 40);
       // 랜덤하게 별똥별 생성
       if (Math.random() < 0.008 && ts - lastTime > 800) {

@@ -64,8 +64,8 @@ const MusicBox = styled.div`
 // 화면에 꽉 차게 이미지를 배경으로 적용하는 함수
 // 이미지의 원본 사이즈를 기준으로, 화면의 가로 길이에 맞춰 이미지를 확대하고 세로 길이만큼 Container를 사용
 function getImageContainerStyle() {
-  const IMAGE_WIDTH = 1080; // 예시: sanghai_full.jpg의 실제 가로(px)
-  const IMAGE_HEIGHT = 1920; // 예시: sanghai_full.jpg의 실제 세로(px)
+  const IMAGE_WIDTH = 3840; // 예시: sanghai_full.jpg의 실제 가로(px)
+  const IMAGE_HEIGHT = 6000; // 예시: sanghai_full.jpg의 실제 세로(px)
   const vw = window.innerWidth;
   const scale = vw / IMAGE_WIDTH;
   const containerHeight = IMAGE_HEIGHT * scale;

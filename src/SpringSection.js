@@ -28,10 +28,11 @@ const Quote = styled.h2`
   font-size: 2rem;
   margin-top: 80px;
   font-family: 'Montserrat', 'Nanum Myeongjo', serif;
-  @media (max-width: 600px) {
-    font-size: 1.2rem;
-    margin-top: 40px;
-  }
+    text-align: left;
+    @media (max-width: 600px) {
+      font-size: 1.2rem;
+      margin-top: 40px;
+    }
 `;
 
 const Letter = styled.p`
