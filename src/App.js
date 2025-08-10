@@ -67,8 +67,8 @@ const messageLines = [
 const BridgeSection = () => (
   <section style={{
     width: '100vw',
-    height: '60vh',
-    minHeight: '600px',
+    height: '100vh',
+    minHeight: '4000px',
     position: 'relative',
     display: 'flex',
     flexDirection: 'column',
