@@ -48,22 +48,60 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-const MusicBox = styled.div`
-  position: absolute;
-  top: 24px;
-  right: 32px;
-  z-index: 20;
-  background: rgba(30, 20, 40, 0.18);
-  border-radius: 18px;
-  padding: 8px 12px;
-  box-shadow: 0 2px 12px rgba(30,20,40,0.18);
-  display: flex;
-  align-items: center;
-`;
+// BridgeSection: messageLines를 받아서 SpringSection처럼 렌더링
+const messageLines = [
+  "우리의 시간선이 같은 방향을 보고 출발하여",
+  "같은 속도로 흘러간다는 것이",
+  "어찌나 아름답고 편안한지 모릅니다",
+  "",
+  "미래의 시간선이 항상 행복으로 가득차 있지는 않겠지만",
+  "그것마저 인생의 아름다움으로 포함되길 원합니다",
+  "당신과 궁극적인 아름다움을 함께 하게 되어 감사합니다",
+  "",
+  "우리의 시간이 느리게 천천히 ",
+  "그리고 깊게 흘러가길 바랍니다",
+  "하루하루를 충분히 헤엄치길 바랍니다",
+  ""
+];
+
+const BridgeSection = () => (
+  <section style={{
+    width: '100vw',
+    height: '60vh',
+    minHeight: '600px',
+    position: 'relative',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    background: 'linear-gradient(180deg, #f9f6f2 0%, #eaeaea 60%, #fff 100%)',
+    overflow: 'hidden',
+  }}>
+    {messageLines.map((line, idx) => (
+      <div
+        key={idx}
+        style={{
+          width: '100vw',
+          fontSize: '1.35rem',
+          color: '#222',
+          fontFamily: "Noto Sans KR, 'Tangerine', cursive",
+          textShadow: "0 2px 16px #3a225c, 0 0 24px #fff",
+          lineHeight: 2.2,
+          opacity: 1,
+          filter: line ? 'brightness(1.1)' : 'none',
+          textAlign: 'center',
+          margin: '12px 0',
+        }}
+      >
+        {line}
+      </div>
+    ))}
+  </section>
+);
 
 // 이미지 원본 사이즈 및 화면 크기 기준 계산 (중복 제거)
 const IMAGE_WIDTH = 3840; // sanghai_full.jpg의 실제 가로(px)
-const IMAGE_HEIGHT = 6000; // sanghai_full.jpg의 실제 세로(px)
+const IMAGE_HEIGHT = 2160; // sanghai_full.jpg의 실제 세로(px)
 const vw = window.innerWidth;
 const scale = vw / IMAGE_WIDTH;
 const containerHeight = IMAGE_HEIGHT * scale;
@@ -122,40 +160,6 @@ function App() {
     >{char === " " ? "\u00A0" : char}</span>
   ));
 
-  // 아래 문장들 한 줄씩 나타나는 애니메이션
-  const messageLines = [
-    "우리의 시간선이 같은 방향을 보고 출발하여",
-    "같은 속도로 흘러간다는 것이",
-    "어찌나 아름답고 편안한지 모릅니다",
-    "",
-    "미래의 시간선이 항상 행복으로 가득차 있지는 않겠지만",
-    "그것마저 인생의 아름다움으로 포함되길 원합니다",
-    "당신과 궁극적인 아름다움을 함께 하게 되어 감사합니다",
-    "",
-    "우리의 시간이 느리게 천천히 ",
-    "그리고 깊게 흘러가길 바랍니다",
-    "하루하루를 충분히 헤엄치길 바랍니다",
-    ""
-  ];
-  const [visibleMsgLines, setVisibleMsgLines] = React.useState(0);
-  React.useEffect(() => {
-    function onScroll() {
-      const scrollY = window.scrollY;
-      // 한 줄씩 60px마다 추가로 나타남
-      setVisibleMsgLines(Math.min(messageLines.length, Math.floor(scrollY / 60) + 1));
-    }
-    window.addEventListener("scroll", onScroll);
-    onScroll();
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-
-  // messageLines 위치 계산 (이미 계산된 값 재사용)
-  const firstLineTop = containerHeight * 0.4;
-  const lastLineBottom = containerHeight * 0.98;
-  const lineCount = messageLines.length;
-  const lineGap = (lastLineBottom - firstLineTop) / (lineCount - 1);
-
   return (
     <>
       <GlobalStyle />
@@ -164,31 +168,8 @@ function App() {
         <Stars>
           {stars}
         </Stars>
-        {messageLines.map((line, idx) => (
-          <div
-            key={idx}
-            style={{
-              position: "absolute",
-              top: `${firstLineTop + lineGap * idx}px`,
-              left: "50%",
-              transform: "translateX(-50%)",
-              zIndex: 4,
-              width: "100vw",
-              fontSize: "1.35rem",
-              color: "#fff",
-              fontFamily: "Noto Sans KR, 'Tangerine', cursive",
-              textShadow: "0 2px 16px #3a225c, 0 0 24px #fff",
-              lineHeight: 2.2,
-              opacity: visibleMsgLines > idx ? 1 : 0,
-              transition: "opacity 0.8s",
-              filter: line ? "brightness(1.5) drop-shadow(0 0 12px #fff)" : "none",
-              textAlign: "center",
-            }}
-          >
-            {line}
-          </div>
-        ))}
       </div>
+      <BridgeSection />
       <SpringSection />
       <SummerSection />
       <AutumnSection />
