@@ -130,7 +130,10 @@ function App() {
   React.useEffect(() => {
     if (audioRef.current) {
       audioRef.current.loop = true;
-      if (playing) audioRef.current.play();
+      audioRef.current.volume = 0.99;
+      if (playing) {
+        audioRef.current.play().catch(() => {});
+      }
     }
   }, [playing]);
 
@@ -138,7 +141,11 @@ function App() {
   React.useEffect(() => {
     if (audioRef.current) {
       audioRef.current.loop = true;
+      audioRef.current.volume = 0.99;
       audioRef.current.play().catch(() => {});
+      setTimeout(() => {
+        audioRef.current.play().catch(() => {});
+      }, 500);
     }
   }, []);
 
@@ -194,7 +201,7 @@ function App() {
               <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><polygon points="4,3 15,9 4,15" fill="#fff"/></svg>
             )}
           </button>
-          <audio ref={audioRef} src="I've Never Been In Love Before.mp3" autoPlay loop style={{ display: 'none' }} />
+          <audio ref={audioRef} src="I've Never Been In Love Before.mp3" autoPlay loop playsInline preload="auto" style={{ display: 'none' }} />
         </MusicBox>
       </NightContainer>
       <SpringSection />

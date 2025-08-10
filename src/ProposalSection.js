@@ -51,33 +51,6 @@ const Letter = styled.p`
   }
 `;
 
-const GrassAnim = keyframes`
-  0% { transform: rotate(-5deg); }
-  50% { transform: rotate(5deg); }
-  100% { transform: rotate(-5deg); }
-`;
-
-const Grass = styled.div`
-  position: absolute;
-  width: 100vw;
-  height: 80px;
-  left: 0;
-  bottom: 0;
-  z-index: 3;
-  @media (max-width: 600px) {
-    height: 40px;
-  }
-`;
-
-const GrassBlade = styled.div`
-  position: absolute;
-  border-left: 4px solid transparent;
-  border-right: 4px solid transparent;
-  border-bottom: 60px solid ${props => props.color || '#3b7a2a'};
-  animation: ${GrassAnim} 2.5s infinite ease-in-out;
-  transform-origin: bottom center;
-  opacity: ${props => props.opacity || 0.8};
-`;
 
 function StarsCanvas() {
   const canvasRef = useRef(null);
@@ -141,15 +114,6 @@ function StarsCanvas() {
 }
 
 function ProposalSection() {
-  const grassCount = 15;
-  const positions = [];
-  while (positions.length < grassCount) {
-    const pos = Math.floor(Math.random() * 1000) / 1000;
-    if (!positions.some(p => Math.abs(p - pos) < 0.03)) {
-      positions.push(pos);
-    }
-  }
-  positions.sort((a, b) => a - b);
 
   return (
     <Section>
@@ -161,25 +125,6 @@ function ProposalSection() {
         이제 내 마음을 담아 진심으로 청합니다.<br />
         앞으로의 모든 날도 함께해요.
       </Letter>
-      <Grass>
-        {positions.map((pos, i) => {
-          const bladeHeight1 = 120 + Math.random() * 80;
-          const bladeHeight2 = 80 + Math.random() * 60;
-          return (
-            <React.Fragment key={i}>
-              <GrassBlade
-                color="#3b7a2a"
-                style={{ left: `${pos * 100}%`, height: `${bladeHeight1}px`, animationDelay: `${i * 0.2}s` }}
-              />
-              <GrassBlade
-                color="#a3e635"
-                opacity={0.6}
-                style={{ left: `${pos * 100}%`, height: `${bladeHeight2}px`, animationDelay: `${i * 0.2 + 1}s` }}
-              />
-            </React.Fragment>
-          );
-        })}
-      </Grass>
       {/* 별똥별 애니메이션 */}
       <ShootingStarCanvas />
     </Section>
