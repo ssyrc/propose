@@ -18,7 +18,9 @@
 
 ## 1. Spring/Summer/Autumn/Winter
 - 편지 쓰는 형식으로
-- 이미지 내려오는 속도 느리게/모바일 버전에서 너무 빠름
+- 모바일 버전에서 너무 빠름
 - [Autumn] 옆에 낙엽 길? 아니면 나무?
+- [Winter] 자꾸 쌓인 눈 안 보임
 
 ## 2. Proposal
+- [Proposal] 자꾸 풀 없어짐

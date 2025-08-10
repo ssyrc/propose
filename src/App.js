@@ -92,7 +92,7 @@ function App() {
   const stars = Array.from({ length: starCount }, (_, i) => {
     const left = Math.random() * 100;
     const top = Math.random() * 60;
-    const size = 1 + Math.random() * 2;
+    const size = 2 + Math.random() * 5; // 더 크게
     const baseOpacity = 0.3 + Math.random() * 0.4;
     const twinkle = Math.random() * 2 + 1.2;
     return (
@@ -107,7 +107,7 @@ function App() {
           borderRadius: '50%',
           background: '#fff',
           opacity: baseOpacity,
-          boxShadow: '0 0 12px #b39ddb',
+          boxShadow: '0 0 16px #b39ddb',
           animation: `starTwinkle ${twinkle}s infinite ease-in-out`,
         }}
       />
@@ -134,11 +134,24 @@ function App() {
     }
   }, [playing]);
 
+  // 한글자씩 반짝임
+  const titleText = "Happy Birthday, my lover";
+  const titleSpans = titleText.split("").map((char, idx) => (
+    <span
+      key={idx}
+      style={{
+        display: "inline-block",
+        animation: `charTwinkle 1.6s ${0.12 * idx}s infinite ease-in-out`,
+        textShadow: "0 6px 32px #3a225c, 0 0 24px #fff",
+      }}
+    >{char === " " ? "\u00A0" : char}</span>
+  ));
+
   return (
     <>
       <GlobalStyle />
       <NightContainer>
-        <Title>Happy Birthday, my lover</Title>
+        <Title style={{letterSpacing: "2px"}}>{titleSpans}</Title>
         <Stars>
           {stars}
         </Stars>
@@ -173,7 +186,7 @@ function App() {
               <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><polygon points="4,3 15,9 4,15" fill="#fff"/></svg>
             )}
           </button>
-          <audio ref={audioRef} src="bgm.mp3" autoPlay loop style={{ display: 'none' }} />
+          <audio ref={audioRef} src="I've Never Been In Love Before.mp3" autoPlay loop style={{ display: 'none' }} />
         </MusicBox>
       </NightContainer>
       <SpringSection />
@@ -182,12 +195,11 @@ function App() {
       <WinterSection />
       <ProposalSection />
       <style>{`
-        @keyframes titleTwinkle {
-          0% { opacity: 0.85; }
-          20% { opacity: 1; }
-          50% { opacity: 1; }
-          80% { opacity: 1; }
-          100% { opacity: 0.85; }
+        @keyframes charTwinkle {
+          0% { opacity: 0.7; filter: brightness(0.8); }
+          40% { opacity: 1; filter: brightness(1.5); }
+          60% { opacity: 0.8; filter: brightness(1.1); }
+          100% { opacity: 0.7; filter: brightness(0.8); }
         }
         @keyframes starTwinkle {
           0% { opacity: 0.2; filter: brightness(0.7); }

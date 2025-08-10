@@ -6,7 +6,7 @@ const Section = styled.section`
   min-height: 100vh;
   background: linear-gradient(135deg, #e0eafc, #fff);
   position: relative;
-  overflow: hidden;
+  overflow: visible;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -15,7 +15,7 @@ const Section = styled.section`
   @media (max-width: 600px) {
     min-height: 80vh;
     padding: 0 5px;
-  }
+  } 
 `;
 
 const FadeInUp = styled.div`
