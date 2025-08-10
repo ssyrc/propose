@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 const Section = styled.section`
   min-height: 100vh;
-  background: linear-gradient(180deg, #e0f7fa 0%, #e7f5f7ff 50%, #fffbe7 100%);
+  background: linear-gradient(180deg, #caf1f7ff 0%, #e7f5f7ff 50%, #fffbe7 100%);
   position: relative;
   display: flex;
   flex-direction: column;

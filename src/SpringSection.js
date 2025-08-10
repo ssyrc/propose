@@ -2,8 +2,8 @@ import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 
 const Section = styled.section`
-  min-height: 100vh;
-  background: linear-gradient(180deg, #fff0f6 0%, #ffe7feff 60%, #e0f7fa 100%);
+  min-height: 100vh; 
+  background: linear-gradient(180deg, #ffe7feff 0%, #fff0f6 50%, #e0f7fa 100%);
   position: relative;
   overflow: hidden;
   display: flex;
