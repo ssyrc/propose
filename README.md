@@ -15,14 +15,15 @@
 - 상하이 야경에서 깊은 물 갔다가 밤하늘에 풀로?
 - (Deprecated) Winter - 쌓인 눈, Proposal - 풀
 - 편지 문구로 수정
+- sanghai_full 너무 어두워서 원래대로 sanghai.png 사용하고 밝아지게 BridgeSection 추가
 
 # To-Do
 ## 0. App.js
-- 너무 어두운데 원래대로 sanghai.png 사용하고 밝아지게?
-- 디즈니 활용? 
+- 디즈니 활용 아이디어 있을지? 
 
 ## 1. Spring/Summer/Autumn/Winter
 - 편지 쓰는 형식으로
 - 모바일 버전에서 너무 빠름
 
 ## 2. Proposal
+- 아래 풀 추가해줘

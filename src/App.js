@@ -64,6 +64,20 @@ const messageLines = [
   ""
 ];
 
+const Letter = styled.p`
+  font-size: 1.1rem;
+  color: #444;
+  font-family: 'Nanum Myeongjo', 'Montserrat', sans-serif;
+  margin: 24px 0 0 0;
+  line-height: 3.4;
+  text-align: left;
+  position: relative;
+  @media (max-width: 600px) {
+    font-size: 0.95rem;
+    margin: 12px 0 0 0;
+  }
+`;
+
 const BridgeSection = () => (
   <section style={{
     width: '100vw',
@@ -78,25 +92,8 @@ const BridgeSection = () => (
     overflow: 'hidden',
   }}>
     {messageLines.map((line, idx) => (
-      <div
-        key={idx}
-        style={{
-          width: '100vw',
-          fontSize: '1.35rem',
-          color: '#222',
-          fontFamily: "Noto Sans KR, 'Tangerine', cursive",
-          textShadow: "0 2px 16px #3a225c, 0 0 24px #fff",
-          lineHeight: 2.2,
-          opacity: 1,
-          filter: line ? 'brightness(1.1)' : 'none',
-          textAlign: 'center',
-          margin: '12px 0',
-        }}
-      >
-      {line}
-      </div>
-      )
-    )}
+      <Letter key={idx}>{line}</Letter>
+    ))}
   </section>
 );
 

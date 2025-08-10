@@ -55,16 +55,6 @@ const Letter = styled.p`
     font-size: 0.95rem;
     margin: 12px 0 0 0;
   }
-  &::after {
-    content: '';
-    display: block;
-    width: 100%;
-    height: 18px;
-    margin-top: 8px;
-    background: url('https://raw.githubusercontent.com/creativetimofficial/public-assets/master/handwriting/line_wavy.png') repeat-x;
-    background-size: contain;
-    opacity: 0.7;
-  }
 `;
 
 
