@@ -40,7 +40,7 @@ const Letter = styled.p`
   color: #444;
   font-family: 'Nanum Myeongjo', 'Montserrat', sans-serif;
   margin: 24px 0 0 0;
-  line-height: 1.7;
+  line-height: 3.4;
   text-align: center;
   @media (max-width: 600px) {
     font-size: 0.95rem;

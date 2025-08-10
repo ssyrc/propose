@@ -21,7 +21,7 @@ const Section = styled.section`
 
 const Title = styled.h2`
   color: #fff;
-  font-size: 2.3rem;
+  font-size: 4.6rem;
   font-family: 'Tangerine', cursive;
   margin-bottom: 32px;
   z-index: 2;
@@ -30,28 +30,37 @@ const Title = styled.h2`
   text-align: center;
   filter: brightness(1.5) drop-shadow(0 0 12px #fff);
   @media (max-width: 600px) {
-    font-size: 1.3rem;
+    font-size: 2.6rem;
     margin-bottom: 18px;
   }
 `;
 
 const RingIcon = styled(FaRing)`
-  color: #d4af37;
+  color: #fff;
   font-size: 5rem;
   margin-bottom: 24px;
   z-index: 2;
+  filter: drop-shadow(0 0 16px #fff) brightness(2);
+  animation: ringTwinkle 1.8s infinite ease-in-out;
+  @keyframes ringTwinkle {
+    0% { filter: drop-shadow(0 0 8px #fff) brightness(1.2); }
+    40% { filter: drop-shadow(0 0 32px #fff) brightness(2.5); }
+    60% { filter: drop-shadow(0 0 16px #fff) brightness(1.7); }
+    100% { filter: drop-shadow(0 0 8px #fff) brightness(1.2); }
+  }
 `;
 
 const Letter = styled.p`
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   color: #fff;
   font-family: 'Nanum Myeongjo', 'Montserrat', sans-serif;
-  margin: 0 0 32px 0;
+  margin: 24px 0 0 0;
+  line-height: 3.4;
   text-align: center;
   z-index: 2;
   @media (max-width: 600px) {
-    font-size: 1rem;
-    margin: 0 0 16px 0;
+    font-size: 0.95rem;
+    margin: 12px 0 0 0;
   }
 `;
 
@@ -137,7 +146,7 @@ function ProposalSection() {
       <Letter>
         우리의 모든 계절이 아름답고 깊길 바랍니다.<br />
         당신의 반짝임과 나의 반짝임이 순간을 수놓길 바랍니다.<br />
-        사랑하는 당신에게,
+        사랑하는 당신에게, 예림
       </Letter>
       {/* 별똥별 애니메이션 */}
       <ShootingStarCanvas />

@@ -60,12 +60,12 @@ const Letter = styled.p`
   color: #444;
   font-family: 'Nanum Myeongjo', 'Montserrat', sans-serif;
   margin: 24px 0 0 0;
-  line-height: 1.7;
+  line-height: 3.4;
   text-align: center;
-    @media (max-width: 600px) {
-      font-size: 0.95rem;
-      margin: 12px 0 0 0;
-    }
+  @media (max-width: 600px) {
+    font-size: 0.95rem;
+    margin: 12px 0 0 0;
+  }
 `;
 
 function useFadeInOnScroll(ref) {
@@ -111,7 +111,6 @@ function SummerSection() {
           style={{ position: "absolute", bottom: 0, left: 0, width: "100%" }}
         />
       </Waves>
-      <Sand />
       <FadeInUp ref={quoteRef} visible={quoteVisible}>
         <Quote>여름, </Quote>
       </FadeInUp>
