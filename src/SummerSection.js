@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 const Section = styled.section`
   min-height: 100vh;
-  background: linear-gradient(180deg, #ffe4b5 0%, #fffbe7 60%, #e0eafc 100%);
+  background: linear-gradient(180deg, #e0f7fa 0%, #e7f5f7ff 50%, #fffbe7 100%);
   position: relative;
   display: flex;
   flex-direction: column;
@@ -30,7 +30,7 @@ const Sand = styled.div`
   left: 0;
   width: 100%;
   height: 40px; /* 기존 120px에서 60px로 줄임 */
-  background: linear-gradient(180deg, #ffe4b5 80%, #f9d99a 100%);
+  background: linear-gradient(180deg, #fffbe7 0%, #ffe4b5 100%);
   z-index: 1;
 `;
 
