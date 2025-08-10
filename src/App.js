@@ -134,6 +134,15 @@ function App() {
     }
   }, [playing]);
 
+  // 첫 화면 진입 시 자동재생 시도
+  React.useEffect(() => {
+    if (audioRef.current) {
+      audioRef.current.loop = true;
+      audioRef.current.play().catch(() => {});
+    }
+  }, []);
+
+
   // 한글자씩 반짝임
   const titleText = "Happy Birthday, my lover";
   const titleSpans = titleText.split("").map((char, idx) => (
@@ -146,7 +155,6 @@ function App() {
       }}
     >{char === " " ? "\u00A0" : char}</span>
   ));
-
   return (
     <>
       <GlobalStyle />

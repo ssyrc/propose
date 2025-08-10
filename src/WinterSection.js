@@ -6,7 +6,7 @@ const Section = styled.section`
   min-height: 100vh;
   background: linear-gradient(135deg, #e0eafc, #fff);
   position: relative;
-  overflow: visible;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   justify-content: center;

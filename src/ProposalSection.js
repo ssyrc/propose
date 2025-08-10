@@ -11,7 +11,7 @@ const Section = styled.section`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  overflow: visible;
+  overflow: hidden;
   padding: 0 20px;
   @media (max-width: 600px) {
     min-height: 80vh;
