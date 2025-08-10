@@ -58,13 +58,24 @@ const Quote = styled.h2`
 const Letter = styled.p`
   font-size: 1.1rem;
   color: #444;
-  font-family: 'Nanum Myeongjo', 'Montserrat', sans-serif;
+  font-family: 'Nanum Pen Script', 'Tangerine', cursive;
   margin: 24px 0 0 0;
   line-height: 3.4;
-  text-align: center;
+  text-align: right;
+  position: relative;
   @media (max-width: 600px) {
     font-size: 0.95rem;
     margin: 12px 0 0 0;
+  }
+  &::after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 18px;
+    margin-top: 8px;
+    background: url('https://raw.githubusercontent.com/creativetimofficial/public-assets/master/handwriting/line_wavy.png') repeat-x;
+    background-size: contain;
+    opacity: 0.7;
   }
 `;
 

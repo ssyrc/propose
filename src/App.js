@@ -7,14 +7,6 @@ import AutumnSection from "./AutumnSection";
 import WinterSection from "./WinterSection";
 import ProposalSection from "./ProposalSection";
 
-const NightContainer = styled.div`
-  min-height: 100vh;
-  width: 100vw;
-  position: relative;
-  background: url(${process.env.PUBLIC_URL + '/sanghai_full.jpg'}) center center/cover no-repeat;
-  overflow: hidden;
-`;
-
 const Title = styled.h1`
   position: absolute;
   top: 56px;
@@ -45,23 +37,6 @@ const Stars = styled.div`
   pointer-events: none;
 `;
 
-const QuoteBox = styled.div`
-  position: relative;
-  z-index: 3;
-  background: rgba(0,0,0,0.5);
-  border-radius: 24px;
-  padding: 32px 24px;
-  margin-top: 80px;
-  max-width: 600px;
-  text-align: center;
-  color: #fff;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.32);
-  @media (max-width: 600px) {
-    padding: 16px 8px;
-    margin-top: 32px;
-    border-radius: 12px;
-  }
-`;
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -85,6 +60,21 @@ const MusicBox = styled.div`
   display: flex;
   align-items: center;
 `;
+
+// 화면에 꽉 차게 이미지를 배경으로 적용하는 함수
+function getImageContainerStyle() {
+  return {
+    width: '100vw',
+    height: '100vh',
+    position: 'relative',
+    overflow: 'hidden',
+    background: `url(${process.env.PUBLIC_URL + '/sanghai_full.jpg'}) center center / cover no-repeat`,
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+  };
+}
 
 function App() {
   // 반짝이는 별 애니메이션
@@ -114,44 +104,6 @@ function App() {
     );
   });
 
-  const [playing, setPlaying] = React.useState(true);
-  const audioRef = React.useRef(null);
-  const handleToggle = () => {
-    if (audioRef.current) {
-      if (playing) {
-        audioRef.current.pause();
-      } else {
-        audioRef.current.play();
-      }
-      setPlaying(!playing);
-    }
-  };
-
-  React.useEffect(() => {
-    if (audioRef.current) {
-      audioRef.current.loop = true;
-      audioRef.current.volume = 0.99;
-      if (playing) {
-        audioRef.current.play().catch(() => {});
-      }
-    }
-  }, [playing]);
-
-  // 첫 화면 진입 시 자동재생 시도
-  React.useEffect(() => {
-    if (audioRef.current) {
-      audioRef.current.loop = true;
-      audioRef.current.volume = 0.99;
-      audioRef.current.autoplay = true;
-      audioRef.current.play().catch(() => {});
-      setTimeout(() => {
-        audioRef.current.play().catch(() => {});
-      }, 500);
-    }
-  }, []);
-
-
-  // 원래 Title 반짝임 복원
   const titleText = "Happy Birthday, my lover";
   const titleSpans = titleText.split("").map((char, idx) => (
     <span
@@ -190,32 +142,36 @@ function App() {
     onScroll();
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+
   return (
     <>
       <GlobalStyle />
-      <NightContainer>
-        <Title style={{letterSpacing: "2px"}}>{titleSpans}</Title>
+      <div style={getImageContainerStyle()}>
+        <Title style={{ letterSpacing: "2px" }}>{titleSpans}</Title>
         <Stars>
           {stars}
         </Stars>
-        <div style={{
-          position: "absolute",
-          top: "120px",
-          left: "50%",
-          transform: "translateX(-50%)",
-          zIndex: 4,
-          width: "100vw",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "flex-start",
-          textAlign: "center",
-          fontSize: "1.35rem",
-          color: "#fff",
-          fontFamily: "Noto Sans KR, 'Tangerine', cursive",
-          textShadow: "0 2px 16px #3a225c, 0 0 24px #fff",
-          lineHeight: 2.2
-        }}>
+        <div
+          style={{
+            position: "absolute",
+            top: "120px",
+            left: "50%",
+            transform: "translateX(-50%)",
+            zIndex: 4,
+            width: "100vw",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "flex-start",
+            textAlign: "center",
+            fontSize: "1.35rem",
+            color: "#fff",
+            fontFamily: "Noto Sans KR, 'Tangerine', cursive",
+            textShadow: "0 2px 16px #3a225c, 0 0 24px #fff",
+            lineHeight: 2.2,
+          }}
+        >
           {messageLines.map((line, idx) => (
             <div
               key={idx}
@@ -225,38 +181,14 @@ function App() {
                 filter: line ? "brightness(1.5) drop-shadow(0 0 12px #fff)" : "none",
                 marginBottom: line ? "12px" : "32px",
                 width: "100%",
-                textAlign: "center"
+                textAlign: "center",
               }}
-            >{line}</div>
+            >
+              {line}
+            </div>
           ))}
         </div>
-        <MusicBox>
-          <button
-            onClick={handleToggle}
-            style={{
-              background: 'rgba(255,255,255,0.08)',
-              border: 'none',
-              borderRadius: '50%',
-              width: 32,
-              height: 32,
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              cursor: 'pointer',
-              boxShadow: '0 2px 8px rgba(30,20,40,0.18)',
-              marginRight: 0
-            }}
-            aria-label={playing ? 'Pause music' : 'Play music'}
-          >
-            {playing ? (
-              <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="3" y="3" width="4" height="12" rx="2" fill="#fff"/><rect x="11" y="3" width="4" height="12" rx="2" fill="#fff"/></svg>
-            ) : (
-              <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><polygon points="4,3 15,9 4,15" fill="#fff"/></svg>
-            )}
-          </button>
-          <audio id="myAudio" ref={audioRef} src="I've Never Been In Love Before.mp3" autoPlay loop playsInline preload="auto" style={{ display: 'none' }} />
-        </MusicBox>
-      </NightContainer>
+      </div>
       <SpringSection />
       <SummerSection />
       <AutumnSection />
