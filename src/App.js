@@ -8,10 +8,10 @@ import WinterSection from "./WinterSection";
 import ProposalSection from "./ProposalSection";
 
 const NightContainer = styled.div`
-  min-height: 100vh;
+  min-height: 120vh;
   width: 100vw;
   position: relative;
-  background: url(${process.env.PUBLIC_URL + '/sanghai_full.jpg'}) center center/cover no-repeat;
+  background: url(${process.env.PUBLIC_URL + '/sanghai_full.jpg'}) center center/contain no-repeat;
   overflow: hidden;
 `;
 
@@ -220,12 +220,16 @@ function App() {
           marginTop: "180px",
           maxWidth: "700px",
           width: "100%",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
           textAlign: "center",
           fontSize: "1.35rem",
           color: "#fff",
           fontFamily: "Noto Sans KR, 'Tangerine', cursive",
           textShadow: "0 2px 16px #3a225c, 0 0 24px #fff",
-          lineHeight: 1.8,
+          lineHeight: 18,
           padding: "0 12px"
         }}>
           {messageLines.map((line, idx) => (
@@ -235,7 +239,7 @@ function App() {
                 opacity: visibleMsgLines > idx ? 1 : 0,
                 transition: "opacity 0.8s",
                 filter: line ? "brightness(1.5) drop-shadow(0 0 12px #fff)" : "none",
-                marginBottom: line ? "8px" : "18px"
+                marginBottom: line ? "80px" : "180px"
               }}
             >{line}</div>
           ))}

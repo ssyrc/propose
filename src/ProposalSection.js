@@ -5,7 +5,7 @@ import { FaRing } from "react-icons/fa";
 
 const Section = styled.section`
   min-height: 100vh;
-  background: linear-gradient(135deg, #f8bbd0, #6a4fb6, #2d1a47);
+  background: linear-gradient(180deg, #f8bbd0, #6a4fb6, #2d1a47);
   position: relative;
   display: flex;
   flex-direction: column;
