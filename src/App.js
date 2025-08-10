@@ -93,9 +93,10 @@ const BridgeSection = () => (
           margin: '12px 0',
         }}
       >
-        {line}
+      {line}
       </div>
-    ))}
+      )
+    )}
   </section>
 );
 
@@ -112,7 +113,7 @@ function getImageContainerStyle() {
     height: `${containerHeight}px`,
     position: 'relative',
     overflow: 'hidden',
-    background: `url(${process.env.PUBLIC_URL + '/sanghai_full.jpg'}) top center / ${vw}px ${containerHeight}px no-repeat`,
+    background: `url(${process.env.PUBLIC_URL + '/sanghai.jpg'}) top center / ${vw}px ${containerHeight}px no-repeat`,
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -125,7 +126,7 @@ function App() {
   const starCount = 80;
   const stars = Array.from({ length: starCount }, (_, i) => {
     const left = Math.random() * 100;
-    const top = Math.random() * 100; // 전체 영역에 랜덤하게 생성
+    const top = Math.random() * 40;
     const size = 2 + Math.random() * 5; // 더 크게
     const baseOpacity = 0.3 + Math.random() * 0.4;
     const twinkle = Math.random() * 2 + 1.2;
