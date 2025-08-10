@@ -24,19 +24,9 @@ const FadeInUp = styled.div`
   transition: opacity 0.8s, transform 0.8s;
 `;
 
-const Sand = styled.div`
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 40px; /* 기존 120px에서 60px로 줄임 */
-  background: linear-gradient(180deg, #fffbe7 0%, #ffe4b5 100%);
-  z-index: 1;
-`;
-
 const Waves = styled.div`
   position: absolute;
-  bottom: 40px; /* sand 높이와 맞춤 */
+  bottom: 0px;
   left: 0;
   width: 100%;
   height: 60px;
@@ -130,7 +120,7 @@ function SummerSection() {
           사랑의 정의를 아직도 말로써 내리지는 못했지만<br />
           우리의 눈동자가, 따뜻했던 시간들과,<br />
           마음 한 켠을 아릿하게 채우는 그것이<br />
-          사랑이라면 사랑이겠지요,
+          사랑이라면 사랑이겠지요
         </Letter>
       </FadeInUp>
     </Section>
