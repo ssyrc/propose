@@ -8,10 +8,10 @@ import WinterSection from "./WinterSection";
 import ProposalSection from "./ProposalSection";
 
 const NightContainer = styled.div`
-  min-height: 120vh;
+  min-height: 100vh;
   width: 100vw;
   position: relative;
-  background: url(${process.env.PUBLIC_URL + '/sanghai_full.jpg'}) center center/contain no-repeat;
+  background: url(${process.env.PUBLIC_URL + '/sanghai_full.jpg'}) center center/cover no-repeat;
   overflow: hidden;
 `;
 
