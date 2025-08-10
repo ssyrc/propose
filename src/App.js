@@ -215,11 +215,12 @@ function App() {
           {stars}
         </Stars>
         <div style={{
-          position: "relative",
+          position: "absolute",
+          top: "120px",
+          left: "50%",
+          transform: "translateX(-50%)",
           zIndex: 4,
-          marginTop: "120px",
-          maxWidth: "700px",
-          width: "100%",
+          width: "100vw",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
@@ -229,8 +230,7 @@ function App() {
           color: "#fff",
           fontFamily: "Noto Sans KR, 'Tangerine', cursive",
           textShadow: "0 2px 16px #3a225c, 0 0 24px #fff",
-          lineHeight: 2.2,
-          padding: "0 12px"
+          lineHeight: 2.2
         }}>
           {messageLines.map((line, idx) => (
             <div
