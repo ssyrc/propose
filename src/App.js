@@ -82,14 +82,13 @@ const BridgeSection = () => (
   <section style={{
     width: '100vw',
     height: '100vh',
-    minHeight: '4000px',
     position: 'relative',
+    overflow: 'hidden',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    background: 'linear-gradient(180deg, #08275E 0%, #9cb8e7ff 50%, #ffdafeff 100%)',
-    overflow: 'hidden',
+    background: 'linear-gradient(180deg, #08275E 0%, #9cb8e7ff 50%, #ffdafeff 100%)'
   }}>
     {messageLines.map((line, idx) => (
       <Letter key={idx}>{line}</Letter>
