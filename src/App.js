@@ -87,7 +87,7 @@ function App() {
   const starCount = 80;
   const stars = Array.from({ length: starCount }, (_, i) => {
     const left = Math.random() * 100;
-    const top = Math.random() * 60;
+    const top = Math.random() * 100; // 전체 영역에 랜덤하게 생성
     const size = 2 + Math.random() * 5; // 더 크게
     const baseOpacity = 0.3 + Math.random() * 0.4;
     const twinkle = Math.random() * 2 + 1.2;

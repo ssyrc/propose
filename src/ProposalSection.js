@@ -185,7 +185,8 @@ function ShootingStarCanvas() {
         x: startX + Math.random() * 40 - 20,
         y: startY + Math.random() * 40 - 20,
         len: 80 + Math.random() * 180, // trail 길이 랜덤
-        speed: 8 + Math.random() * 6,
+        // 속도 범위와 분포를 더 다양하게 (3~14, 자연스러운 분포)
+        speed: 3 + Math.random() * 11,
         alpha: 0.7 + Math.random() * 0.3,
         trail: []
       });
