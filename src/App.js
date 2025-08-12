@@ -172,6 +172,7 @@ function App() {
       <AutumnSection />
       <WinterSection />
       <ProposalSection />
+      <BgmButton />
       <style>{`
         @keyframes charTwinkle {
           0% { opacity: 0.7; filter: brightness(0.8); }
