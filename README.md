@@ -16,15 +16,4 @@
 - (Deprecated) Winter - 쌓인 눈, Proposal - 풀
 - 편지 문구로 수정
 - sanghai_full 너무 어두워서 원래대로 sanghai.png 사용하고 밝아지게 BridgeSection 추가
-
-# To-Do
-## 0. App.js
-- 디즈니 활용 아이디어 있을지? 
-- Bridge Section 으로 이어지는 부분 어떻게 자연스럽게 할지
-
-## 1. Spring/Summer/Autumn/Winter
-- 편지 쓰는 형식으로
-- 모바일 버전에서 너무 빠름
-
-## 2. Proposal
-- 아래 풀 추가해줘
+- 배경음악 - 오르막길 piano ver. mp3 우측 상단 위젯 추가

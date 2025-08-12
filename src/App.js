@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import BgmButton from "./BgmButton";
 import styled, { createGlobalStyle } from "styled-components";
 import SpringSection from "./SpringSection";
 import SummerSection from "./SummerSection";
