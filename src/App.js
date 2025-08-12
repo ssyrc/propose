@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from "react";
 import './App.css';
 import BgmButton from "./BgmButton";
 import styled, { createGlobalStyle } from "styled-components";
@@ -49,6 +49,12 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
+const FadeInUp = styled.div`
+  opacity: ${props => (props.visible ? 1 : 0)};
+  transform: ${props => (props.visible ? "translateY(0)" : "translateY(40px)")};
+  transition: opacity 0.8s ease, transform 0.8s ease;
+`;
+
 // BridgeSection: messageLines를 받아서 SpringSection처럼 렌더링
 const messageLines = [
   "우리의 시간선이 같은 방향을 보고 출발하여",
@@ -79,23 +85,57 @@ const Letter = styled.p`
   }
 `;
 
-const BridgeSection = () => (
-  <section style={{
-    width: '100vw',
-    height: '100vh',
-    position: 'relative',
-    overflow: 'hidden',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
-    background: 'linear-gradient(180deg, #08275E 0%, #9cb8e7ff 50%, #ffdafeff 100%)'
-  }}>
-    {messageLines.map((line, idx) => (
-      <Letter key={idx}>{line}</Letter>
-    ))}
-  </section>
-);
+const BridgeSection = () => {
+  const [visible, setVisible] = useState(false);
+  const ref = useRef(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+          io.disconnect();
+        }
+      },
+      { threshold: 0.2 }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
+  return (
+    <section
+      style={{
+        width: "100vw",
+        height: "100vh",
+        position: "relative",
+        overflow: "hidden",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        background:
+          "linear-gradient(180deg, #08275E 0%, #9cb8e7ff 50%, #ffdafeff 100%)",
+      }}
+    >
+      <div ref={ref}>
+        {messageLines.map((line, idx) => (
+          <FadeInUp
+            key={idx}
+            visible={visible}
+            style={{
+              transitionDelay: visible ? `${idx * 80}ms` : "0ms"
+            }}
+          >
+            <Letter>{line}</Letter>
+          </FadeInUp>
+        ))}
+      </div>
+    </section>
+  );
+};
 
 // 이미지 원본 사이즈 및 화면 크기 기준 계산 (중복 제거)
 const IMAGE_WIDTH = 3840; // sanghai_full.jpg의 실제 가로(px)
